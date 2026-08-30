@@ -321,13 +321,11 @@ p {
     margin-bottom: 15px;
 }
 
-.premise-card h3 {
-    font-size: 1.15rem;
-    margin-bottom: 12px;
-}
-
-.premise-card p {
-    font-size: 0.95rem;
+.premise-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--text-primary);
 }
 
 /* Features Section (Detailed list layout) */

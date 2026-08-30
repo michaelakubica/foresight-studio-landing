@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foresight Studio - Visual Financial Forecasting & Simulation</title>
+    <link rel="icon" type="image/png" href="assets/FSFavicon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo-link">
+                <img src="assets/FSLogo.png" alt="Foresight Studio" class="nav-logo">
+                <span class="logo-text">Foresight Studio</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="#features">Features</a>
+                <a href="#security">Privacy & Speed</a>
+                <a href="#how-it-works">How It Works</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="/dashboard" class="btn btn-primary">Go to Dashboard</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-badge">Local-First Visual Modeler</span>
+                <h1>Interactive Visual Financial Forecasting</h1>
+                <p class="hero-lead">Build complex market size projections, Monte Carlo simulations, and SaaS financial models visually using an interactive node canvas—without spreadsheet chaos.</p>
+                <div class="hero-ctas">
+                    <a href="/dashboard" class="btn btn-hero-primary">Download Desktop App (.exe)</a>
+                    <a href="#features" class="btn btn-hero-secondary">Explore Features</a>
+                </div>
+            </div>
+            
+            <!-- Interactive Visual Preview -->
+            <div class="hero-preview">
+                <div class="canvas-mockup">
+                    <div class="mockup-header">
+                        <div class="dots">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                        </div>
+                        <div class="tab-title">visual_editor_canvas</div>
+                    </div>
+                    <div class="mockup-body">
+                        <!-- CSS Node Graph representation -->
+                        <div class="node node-input" style="top: 15%; left: 8%;">
+                            <div class="node-title">📥 TAM (Input)</div>
+                            <div class="node-val">$10,000,000</div>
+                        </div>
+                        
+                        <div class="node node-cagr" style="top: 10%; left: 52%;">
+                            <div class="node-title">📈 Growth (CAGR)</div>
+                            <div class="node-val">15.5% YoY</div>
+                        </div>
+                        
+                        <div class="node node-switch" style="top: 55%; left: 12%;">
+                            <div class="node-title">🎭 Macro Scenario</div>
+                            <div class="node-val">Conservative</div>
+                        </div>
+
+                        <div class="node node-pnl" style="top: 48%; left: 55%;">
+                            <div class="node-title">📊 Revenue P&L</div>
+                            <div class="node-val">$4,520,000</div>
+                        </div>
+
+                        <svg class="connections-overlay" width="100%" height="100%">
+                            <!-- Node Connection paths -->
+                            <path d="M 190 60 C 270 60, 270 45, 305 45" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5 5"></path>
+                            <path d="M 190 200 C 270 200, 260 185, 305 185" fill="none" stroke="#a855f7" stroke-width="2"></path>
+                            <path d="M 390 185 C 440 185, 410 185, 450 185" fill="none" stroke="#22c55e" stroke-width="2"></path>
+                            <path d="M 390 45 C 430 45, 410 170, 450 170" fill="none" stroke="#3b82f6" stroke-width="2"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>No More Spreadsheet Nightmare</h2>
+                <p>Strategic modeling built for the modern product, finance, and valuation analyst.</p>
+            </div>
+            
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Visual Node Canvas</h3>
+                    <p>Connect input parameters, CAGR curves, and P&L statements in a drag-and-drop workflow. Map dependencies without writing massive, broken Excel formulas.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">🎲</div>
+                    <h3>Monte Carlo Simulations</h3>
+                    <p>Stop relying on static baseline assumptions. Run statistical simulations to model uncertainty, market volatility, and risk boundaries directly on your inputs.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">📂</div>
+                    <h3>Model Templates Library</h3>
+                    <p>Clone and drop in pre-built models (SaaS finance sheets, biotech trial valuations, adoption funnels) and customize them in seconds using collapsed Canvas Modules.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy & Local-First Speed Section -->
+    <section id="security" class="security-section">
+        <div class="container security-container">
+            <div class="security-content">
+                <span class="section-label">Enterprise Grade Data Privacy</span>
+                <h2>Your IP and Projections Stay 100% Local</h2>
+                <p>Strategic forecasts contain your most confidential company plans. Unlike cloud SaaS solutions that index your financial figures, Foresight Studio is built <strong>local-first</strong>. All simulations run inside sandbox virtual machines directly on your device, ensuring maximum speed and complete data privacy.</p>
+                <ul class="security-list">
+                    <li>🔒 Local sandbox VM compute context</li>
+                    <li>⚡ Sub-second offline calculation loops</li>
+                    <li>💾 Open-standard JSON data formats</li>
+                    <li>☁️ Optional cloud backup sync via Supabase</li>
+                </ul>
+            </div>
+            <div class="security-card">
+                <div class="security-card-header">Local Computing Sandbox</div>
+                <div class="security-card-body">
+                    <div class="sandbox-stat">
+                        <div class="stat-num">0 ms</div>
+                        <div class="stat-label">Cloud Data Transfer Latency</div>
+                    </div>
+                    <div class="sandbox-divider"></div>
+                    <div class="sandbox-stat">
+                        <div class="stat-num">100%</div>
+                        <div class="stat-label">Offline Data Retention</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & CTA Section -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-cta">
+                <h2>Build Better Forecasts Today</h2>
+                <p>Register your license key to unlock visual modeling, Monte Carlo engines, and multi-scenario sandboxing.</p>
+                <a href="/dashboard" class="btn btn-hero-primary">Get Started Now</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Applied Data Sciences, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

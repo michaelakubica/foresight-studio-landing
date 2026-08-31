@@ -372,30 +372,12 @@ p {
     font-size: 1.5rem;
 }
 
-.card-list {
-    list-style: none;
+.card-text {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
     position: relative;
     z-index: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.card-list li {
-    font-size: 0.98rem;
-    color: var(--text-secondary);
-    position: relative;
-    padding-left: 20px;
-}
-
-.card-list li::before {
-    content: "•";
-    color: var(--accent-red);
-    font-weight: bold;
-    font-size: 1.25rem;
-    position: absolute;
-    left: 0;
-    top: -2px;
 }
 
 /* How It Works Section */

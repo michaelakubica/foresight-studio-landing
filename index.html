@@ -142,5 +142,17 @@
         </div>
     </footer>
 
+    <script>
+        // Force page to load at the top and clear URL hash on reload/refresh
+        window.addEventListener('load', () => {
+            const navEntries = performance.getEntriesByType('navigation');
+            if (navEntries.length > 0 && navEntries[0].type === 'reload') {
+                window.scrollTo(0, 0);
+                if (window.location.hash) {
+                    history.replaceState(null, null, window.location.pathname + window.location.search);
+                }
+            }
+        });
+    </script>
 </body>
 </html>

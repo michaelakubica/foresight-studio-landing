@@ -236,6 +236,128 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(59, 130, 246, 0.08);
+        }
+
+        .btn-danger-outline {
+            background-color: transparent;
+            color: #ef4444;
+            border: 1px solid #fca5a5;
+        }
+
+        .btn-danger-outline:hover {
+            background-color: rgba(239, 68, 68, 0.08);
+            border-color: #ef4444;
+        }
+
+        .subscription-card {
+            background-color: rgba(0, 0, 0, 0.015);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .subscription-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .subscription-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-color);
+        }
+
+        .subscription-status-badge {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-active {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-canceled {
+            background-color: #f1f5f9;
+            color: #64748b;
+        }
+
+        .badge-past-due {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .subscription-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .subscription-label {
+            color: var(--text-muted);
+        }
+
+        .subscription-value code {
+            font-family: monospace;
+            background: rgba(0,0,0,0.06);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .btn-copy-key {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--primary-color);
+            margin-left: 6px;
+            padding: 2px 4px;
+        }
+
+        .btn-copy-key:hover {
+            text-decoration: underline;
+        }
+
+        .subscription-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .subscription-actions .btn {
+            font-size: 13px;
+            padding: 9px 12px;
+        }
+
+        .subscription-notice {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #92400e;
+            background: #fffbeb;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid #fde68a;
+        }
     </style>
 </head>
 <body>
@@ -283,9 +405,39 @@
 
                 <div id="dashboard-error-alert" class="status-msg status-msg-error"></div>
 
+                <!-- Subscription & License Management Card -->
+                <div class="subscription-card" id="subscription-card">
+                    <div class="subscription-header">
+                        <div class="subscription-title">🔑 Subscription & License</div>
+                        <span class="subscription-status-badge badge-active" id="subscription-status-badge">Checking...</span>
+                    </div>
+                    <div class="subscription-body">
+                        <div class="subscription-row">
+                            <span class="subscription-label">License Key:</span>
+                            <span class="subscription-value" id="subscription-key-display">
+                                <code id="subscription-key-text">Loading...</code>
+                                <button class="btn-copy-key" id="copy-key-btn" onclick="copyLicenseKey()" title="Copy Key">📋 Copy</button>
+                            </span>
+                        </div>
+                        <div class="subscription-row" id="subscription-period-row" style="display: none;">
+                            <span class="subscription-label">Billing Cycle End:</span>
+                            <span class="subscription-value" id="subscription-period-text"></span>
+                        </div>
+                    </div>
+                    <div class="subscription-actions">
+                        <button id="manage-billing-btn" onclick="openBillingPortal()" class="btn btn-outline" title="Manage payment method, view invoices, or cancel plan">
+                            💳 Manage Billing & Invoices
+                        </button>
+                        <button id="cancel-sub-btn" onclick="confirmCancelSubscription()" class="btn btn-danger-outline" title="Cancel your subscription">
+                            Cancel Subscription
+                        </button>
+                    </div>
+                    <div id="subscription-notice" class="subscription-notice" style="display: none;"></div>
+                </div>
+
                 <div class="download-box">
                     <div class="download-title">📥 Foresight Studio Desktop App</div>
-                    <div class="download-meta">Version 1.2.93 (Windows Installer)</div>
+                    <div class="download-meta">Version 1.2.94 (Windows Installer)</div>
                     <button id="download-btn" onclick="triggerDownload()" class="btn btn-primary">
                         Download Installer (.exe)
                     </button>
@@ -342,6 +494,7 @@
                 authStateDiv.style.display = 'none';
                 loggedInStateDiv.style.display = 'block';
                 userEmailBadge.textContent = session.user.email;
+                loadSubscriptionDetails(session);
             } else {
                 authStateDiv.style.display = 'block';
                 loggedInStateDiv.style.display = 'none';
@@ -607,6 +760,152 @@
             } finally {
                 downloadBtn.disabled = false;
                 downloadBtn.textContent = originalText;
+            }
+        }
+
+        async function loadSubscriptionDetails(session) {
+            if (!session) return;
+            const badge = document.getElementById('subscription-status-badge');
+            const keyText = document.getElementById('subscription-key-text');
+            const periodRow = document.getElementById('subscription-period-row');
+            const periodText = document.getElementById('subscription-period-text');
+            const notice = document.getElementById('subscription-notice');
+            const cancelBtn = document.getElementById('cancel-sub-btn');
+
+            try {
+                const res = await fetch(`${SUPABASE_URL}/functions/v1/customer-portal`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${session.access_token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ action: 'details' })
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.licenseKey) {
+                        keyText.textContent = data.licenseKey;
+                    } else {
+                        keyText.textContent = "None on file";
+                    }
+
+                    const status = (data.status || 'unlicensed').toLowerCase();
+                    badge.textContent = status === 'active' ? 'Active' : (status === 'canceled' ? 'Canceled' : status);
+                    badge.className = `subscription-status-badge ${status === 'active' ? 'badge-active' : 'badge-canceled'}`;
+
+                    if (data.stripe && data.stripe.cancel_at_period_end) {
+                        badge.textContent = 'Cancels at Period End';
+                        badge.className = 'subscription-status-badge badge-past-due';
+                        if (data.stripe.current_period_end) {
+                            const dateStr = new Date(data.stripe.current_period_end).toLocaleDateString();
+                            periodRow.style.display = 'flex';
+                            periodText.textContent = dateStr;
+                            notice.textContent = `Your subscription will end on ${dateStr}. You retain full access until then.`;
+                            notice.style.display = 'block';
+                        }
+                        if (cancelBtn) cancelBtn.style.display = 'none';
+                    } else if (data.stripe && data.stripe.current_period_end) {
+                        const dateStr = new Date(data.stripe.current_period_end).toLocaleDateString();
+                        periodRow.style.display = 'flex';
+                        periodText.textContent = dateStr;
+                    }
+                } else {
+                    badge.textContent = 'None';
+                    badge.className = 'subscription-status-badge badge-canceled';
+                    keyText.textContent = 'No subscription found';
+                    if (cancelBtn) cancelBtn.style.display = 'none';
+                }
+            } catch (err) {
+                console.error("Error loading subscription details:", err);
+            }
+        }
+
+        async function openBillingPortal() {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (!session) return;
+            const btn = document.getElementById('manage-billing-btn');
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.innerHTML = `<span class="loading-spinner"></span>Opening Stripe...`;
+
+            try {
+                const res = await fetch(`${SUPABASE_URL}/functions/v1/customer-portal`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${session.access_token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: 'portal',
+                        returnUrl: window.location.href
+                    })
+                });
+                const data = await res.json();
+                if (res.ok && data.url) {
+                    window.location.href = data.url;
+                } else if (data.allowDirectCancel) {
+                    confirmCancelSubscription();
+                } else {
+                    alert(data.error || "Unable to open billing portal. Please contact support.");
+                }
+            } catch (err) {
+                console.error("Error opening billing portal:", err);
+                alert("Failed to connect to billing server. Please try again.");
+            } finally {
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }
+        }
+
+        async function confirmCancelSubscription() {
+            const confirmed = confirm(
+                "Are you sure you want to cancel your Foresight Studio subscription?\n\n" +
+                "Your subscription will remain active until the end of your current billing period, after which it will not renew."
+            );
+            if (!confirmed) return;
+
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (!session) return;
+
+            const btn = document.getElementById('cancel-sub-btn');
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.innerHTML = `<span class="loading-spinner"></span>Canceling...`;
+
+            try {
+                const res = await fetch(`${SUPABASE_URL}/functions/v1/customer-portal`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${session.access_token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ action: 'cancel' })
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    alert(data.message || "Your subscription has been canceled. You retain access until the end of the billing period.");
+                    loadSubscriptionDetails(session);
+                } else {
+                    alert(data.error || "Unable to cancel subscription. Please contact support.");
+                }
+            } catch (err) {
+                console.error("Error canceling subscription:", err);
+                alert("Failed to cancel subscription. Please check your network connection.");
+            } finally {
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }
+        }
+
+        function copyLicenseKey() {
+            const keyText = document.getElementById('subscription-key-text').textContent;
+            if (keyText && !keyText.includes("Loading") && !keyText.includes("No subscription")) {
+                navigator.clipboard.writeText(keyText).then(() => {
+                    const copyBtn = document.getElementById('copy-key-btn');
+                    copyBtn.textContent = '✅ Copied!';
+                    setTimeout(() => { copyBtn.textContent = '📋 Copy'; }, 2000);
+                });
             }
         }
     </script>

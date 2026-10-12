@@ -122,6 +122,66 @@ p {
     transform: translateY(-1px);
 }
 
+/* Top Notice Banner */
+.top-notice-bar {
+    background: linear-gradient(90deg, #0b132b 0%, #1e3a8a 50%, #0b132b 100%);
+    color: #e2e8f0;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.top-notice-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.notice-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(239, 68, 68, 0.22);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    padding: 2px 9px;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.notice-text {
+    color: #f1f5f9;
+    font-weight: 500;
+}
+
+.notice-highlight {
+    color: #fbbf24;
+    font-weight: 700;
+}
+
+.notice-link {
+    color: #93c5fd;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+}
+
+.notice-link:hover {
+    color: #ffffff;
+    transform: translateX(2px);
+}
+
 /* Header Navbar */
 .navbar {
     position: fixed;
@@ -215,6 +275,55 @@ p {
 .hero-ctas {
     display: flex;
     gap: 15px;
+}
+
+/* Hero Notice Card */
+.hero-notice-card {
+    margin-top: 26px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(211, 47, 47, 0.04) 100%);
+    border: 1px solid rgba(30, 64, 175, 0.18);
+    border-left: 3px solid var(--accent-blue);
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    max-width: 540px;
+    text-align: left;
+}
+
+.hero-notice-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.hero-notice-body {
+    flex: 1;
+}
+
+.hero-notice-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-blue);
+    margin-bottom: 4px;
+}
+
+.hero-notice-text {
+    font-size: 0.93rem;
+    color: var(--text-primary);
+    line-height: 1.45;
+    margin-bottom: 0;
+}
+
+.hero-notice-text .offer-value {
+    color: #b45309;
+    font-weight: 700;
 }
 
 /* Visual Mockup Container */
@@ -453,7 +562,34 @@ p {
 }
 
 .footer-cta p {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+}
+
+/* Footer Notice Pill */
+.footer-notice-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 22px;
+    background: #ffffff;
+    border: 1px solid rgba(30, 64, 175, 0.2);
+    border-radius: 9999px;
+    color: var(--text-primary);
+    font-size: 0.92rem;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+    max-width: 660px;
+    line-height: 1.45;
+}
+
+.footer-notice-pill strong {
+    color: #b45309;
+}
+
+.footer-notice-icon {
+    font-size: 1.1rem;
+    line-height: 1;
 }
 
 .footer-bottom {
@@ -481,6 +617,23 @@ p {
         justify-content: center;
         flex-direction: column;
         gap: 10px;
+    }
+
+    .hero-notice-card {
+        margin: 22px auto 0 auto;
+        text-align: left;
+    }
+
+    .top-notice-bar {
+        font-size: 0.78rem;
+        padding: 7px 12px;
+    }
+
+    .footer-notice-pill {
+        font-size: 0.84rem;
+        padding: 10px 16px;
+        border-radius: 12px;
+        text-align: center;
     }
     
     .premises-grid {

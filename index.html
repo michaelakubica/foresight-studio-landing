@@ -9,6 +9,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- PostHog Analytics -->
+    <script>
+        !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}p||((p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",p.onerror=function(){p=null},(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="du fu pu gu bu init Vu Gu zu Uu Ku el Wu Xu qu rc oc ac lc uc cc capture getExtension Qu cu fc calculateEventProperties dc register register_once register_for_session unregister unregister_for_session bc Bu gc getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys onActiveMatchingSurveysChanged renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset wc shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty mc ec createPersonProfile setInternalOrTestUser yc Su wu opt_in_capturing opt_out_capturing ku has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing Yu debug il Os getPageViewId captureTraceFeedback captureTraceMetric Ou".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+        posthog.init('phc_x8PZN5ZAdwgAhGhQSzXntGNQieQmAJk8RcVDWvi9URTM', {
+            api_host: 'https://us.i.posthog.com',
+            defaults: '2026-05-30',
+            person_profiles: 'always', // Track all visitors and create session profiles
+        })
+    </script>
 </head>
 <body>
 
@@ -18,7 +27,7 @@
             <div class="top-notice-container">
                 <span class="notice-badge">Special Offer</span>
                 <span class="notice-text">For a limited time, your subscription includes a personalized concierge onboarding <span class="notice-highlight">(a $500 value)</span></span>
-                <a href="https://buy.stripe.com/4gMaEQcFw87x1FTcmn8g004" class="notice-link">Claim Offer &rarr;</a>
+                <a href="https://buy.stripe.com/4gMaEQcFw87x1FTcmn8g004" class="notice-link" data-attr="cta-top-notice" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'top_notice', cta: 'claim_offer' })">Claim Offer &rarr;</a>
             </div>
         </div>
         <div class="nav-container">
@@ -28,10 +37,10 @@
             <nav class="nav-menu">
                 <a href="#about">About</a>
                 <a href="#features">Features</a>
-                <a href="/dashboard">Sign In</a>
+                <a href="/dashboard" data-attr="cta-nav-signin" onclick="if(window.posthog)posthog.capture('clicked_signin', { location: 'nav' })">Sign In</a>
             </nav>
             <div class="nav-actions">
-                <a href="https://buy.stripe.com/4gMaEQcFw87x1FTcmn8g004" class="btn btn-primary">Start Free Trial</a>
+                <a href="https://buy.stripe.com/4gMaEQcFw87x1FTcmn8g004" class="btn btn-primary" data-attr="cta-nav-trial" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'nav', cta: 'start_free_trial' })">Start Free Trial</a>
             </div>
         </div>
     </header>
@@ -44,7 +53,7 @@
                 <h1>High-stakes decisions demand defensible forecasts.</h1>
                 <p class="hero-lead">Whether evaluating an acquisition, prioritizing a pipeline asset, or building a multi-year strategic plan, your decisions are only as sound as the models behind them. Foresight Studio replaces opaque spreadsheets with transparent, probabilistic visual workflows—giving you the rigor and clarity to decide with confidence.</p>
                 <div class="hero-ctas">
-                    <a href="https://buy.stripe.com/4gMaEQcFw87x1FTcmn8g004" class="btn btn-hero-primary">Start Free Trial</a>
+                    <a href="https://buy.stripe.com/4gMaEQcFw87x1FTcmn8g004" class="btn btn-hero-primary" data-attr="cta-hero-trial" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'hero', cta: 'start_free_trial' })">Start Free Trial</a>
                 </div>
 
                 <!-- Concierge Onboarding Notice -->
@@ -155,7 +164,7 @@
                     <span>For a limited time, your subscription includes a personalized concierge onboarding <strong>(a $500 value)</strong>.</span>
                 </div>
                 <div>
-                    <a href="https://buy.stripe.com/4gMaEQcFw87x1FTcmn8g004" class="btn btn-hero-primary">Start Free Trial</a>
+                    <a href="https://buy.stripe.com/4gMaEQcFw87x1FTcmn8g004" class="btn btn-hero-primary" data-attr="cta-footer-trial" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'footer', cta: 'start_free_trial' })">Start Free Trial</a>
                 </div>
             </div>
             <div class="footer-bottom">

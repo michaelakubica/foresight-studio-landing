@@ -498,10 +498,15 @@
 
                 <div class="download-box">
                     <div class="download-title">📥 Foresight Studio Desktop App</div>
-                    <div class="download-meta">Version 1.2.118 (Windows Installer)</div>
-                    <button id="download-btn" onclick="triggerDownload()" onmouseenter="ensureDownloadPrefetch()" onfocus="ensureDownloadPrefetch()" class="btn btn-primary">
-                        Download Installer (.exe)
-                    </button>
+                    <div class="download-meta">Version 1.2.118 (Production Release)</div>
+                    <div style="display: flex; gap: 10px; margin-top: 14px; margin-bottom: 8px;">
+                        <button id="download-mac-btn" onclick="triggerDownload('mac')" class="btn btn-primary" style="flex: 1; padding: 12px 10px; font-weight: 600;">
+                            🍏 Download for Mac (.dmg)
+                        </button>
+                        <button id="download-win-btn" onclick="triggerDownload('win')" class="btn btn-secondary" style="flex: 1; padding: 12px 10px; font-weight: 600;">
+                            🪟 Download for Windows (.exe)
+                        </button>
+                    </div>
                     <!-- Immediate Download Progress HUD -->
                     <div id="download-progress-container" class="download-progress-container" style="display: none;">
                         <div class="download-progress-header">
@@ -512,6 +517,9 @@
                             <div id="download-progress-bar" class="download-progress-bar"></div>
                         </div>
                         <div id="download-progress-tip" class="download-progress-tip">Your browser is saving the installer. Check your downloads shelf if not visible.</div>
+                    </div>
+                    <div id="mac-gatekeeper-tip" style="margin-top: 12px; font-size: 11.5px; color: #475569; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 9px 12px; text-align: left; line-height: 1.45;">
+                        🍏 <strong>macOS First Launch Tip:</strong> If macOS displays an <em>"unidentified developer"</em> notice when first opening, simply go to your Mac's <strong>System Settings &gt; Privacy &amp; Security</strong> and click <strong>"Open Anyway"</strong>.
                     </div>
                 </div>
 
@@ -860,9 +868,10 @@
             }
         }
 
-        async function triggerDownload() {
+        async function triggerDownload(selectedOs = 'auto') {
             const dbErr = document.getElementById('dashboard-error-alert');
-            const downloadBtn = document.getElementById('download-btn');
+            const macBtn = document.getElementById('download-mac-btn');
+            const winBtn = document.getElementById('download-win-btn');
             const progressBox = document.getElementById('download-progress-container');
             const progressLabel = document.getElementById('download-progress-label');
             const progressStatus = document.getElementById('download-progress-status');
@@ -876,77 +885,88 @@
                 return;
             }
 
+            const isMacHost = /Mac|iPhone|iPad|iPod/i.test(navigator.userAgent || navigator.platform);
+            const targetOs = selectedOs === 'auto' ? (isMacHost ? 'mac' : 'win') : selectedOs;
+            const activeBtn = targetOs === 'mac' ? macBtn : winBtn;
+
             // Immediately show progress HUD (0ms perceived latency!)
             if (progressBox) progressBox.style.display = 'block';
-            if (progressLabel) progressLabel.textContent = '⬇️ Starting download...';
+            if (progressLabel) progressLabel.textContent = `⬇️ Starting ${targetOs === 'mac' ? 'macOS DMG' : 'Windows installer'} download...`;
             if (progressStatus) progressStatus.textContent = 'Connecting...';
-            downloadBtn.disabled = true;
-            const originalText = downloadBtn.textContent;
-            downloadBtn.innerHTML = `<span class="loading-spinner"></span>Initiating Download...`;
+            if (activeBtn) {
+                activeBtn.disabled = true;
+                activeBtn.innerHTML = `<span class="loading-spinner"></span>Initiating...`;
+            }
 
             try {
-                let downloadUrl = cachedDownloadUrl;
+                // Verify license gate with Supabase
+                const response = await fetch(`${SUPABASE_URL}/functions/v1/download-installer`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${session.access_token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
 
-                if (!downloadUrl && prefetchPromise) {
-                    if (progressLabel) progressLabel.textContent = '⬇️ Preparing download link...';
-                    await prefetchPromise;
-                    downloadUrl = cachedDownloadUrl;
+                const data = await response.json();
+
+                if (!response.ok || !data.downloadUrl) {
+                    let errMsg = data.error || "Download link generation failed.";
+                    if (errMsg.includes("No active license key found")) {
+                        errMsg = `No active subscription found for ${session.user.email}. If you just subscribed, please ensure your registration email matches your payment email.`;
+                    }
+                    throw new Error(errMsg);
                 }
 
-                if (!downloadUrl) {
-                    if (progressLabel) progressLabel.textContent = '⬇️ Generating verified link...';
-                    const response = await fetch(`${SUPABASE_URL}/functions/v1/download-installer`, {
-                        method: 'POST',
-                        headers: {
-                            'Authorization': `Bearer ${session.access_token}`,
-                            'Content-Type': 'application/json'
-                        }
+                let finalDownloadUrl = data.downloadUrl;
+                if (targetOs === 'mac') {
+                    finalDownloadUrl = "https://download.foresightstudio.io/Foresight%20Studio-1.2.118-arm64.dmg";
+                }
+
+                if (progressLabel) progressLabel.textContent = `⬇️ Transferring ${targetOs === 'mac' ? 'macOS DMG' : 'Windows installer'} to browser...`;
+                if (progressStatus) progressStatus.textContent = 'Transferring...';
+                if (window.posthog) {
+                    posthog.capture('installer_download_started', {
+                        user_id: session && session.user ? session.user.id : null,
+                        email: session && session.user ? session.user.email : null,
+                        os: targetOs
                     });
-
-                    const data = await response.json();
-
-                    if (response.ok && data.downloadUrl) {
-                        downloadUrl = data.downloadUrl;
-                        cachedDownloadUrl = downloadUrl;
-                    } else {
-                        let errMsg = data.error || "Download link generation failed.";
-                        if (errMsg.includes("No active license key found")) {
-                            errMsg = `No active subscription found for ${session.user.email}. If you just subscribed, please ensure your registration email matches your payment email.`;
-                        }
-                        throw new Error(errMsg);
-                    }
                 }
+                startBrowserDownload(finalDownloadUrl);
 
-                if (downloadUrl) {
-                    if (progressLabel) progressLabel.textContent = '⬇️ Transferring installer to browser...';
-                    if (progressStatus) progressStatus.textContent = 'Transferring...';
-                    if (window.posthog) {
-                        posthog.capture('installer_download_started', {
-                            user_id: session && session.user ? session.user.id : null,
-                            email: session && session.user ? session.user.email : null
-                        });
+                setTimeout(() => {
+                    if (progressLabel) progressLabel.textContent = '✅ Download initiated!';
+                    if (progressStatus) progressStatus.textContent = 'Started';
+                    if (progressTip) progressTip.textContent = targetOs === 'mac'
+                        ? 'Mac DMG downloading. Open the DMG and drag Foresight Studio to Applications.'
+                        : 'Windows installer downloading. Run the setup once complete.';
+                    if (activeBtn) activeBtn.innerHTML = '✓ Download Started';
+                }, 400);
+
+                setTimeout(() => {
+                    if (macBtn) {
+                        macBtn.disabled = false;
+                        macBtn.innerHTML = '🍏 Download for Mac (.dmg)';
                     }
-                    startBrowserDownload(downloadUrl);
+                    if (winBtn) {
+                        winBtn.disabled = false;
+                        winBtn.innerHTML = '🪟 Download for Windows (.exe)';
+                    }
+                }, 3500);
 
-                    setTimeout(() => {
-                        if (progressLabel) progressLabel.textContent = '✅ Download initiated!';
-                        if (progressStatus) progressStatus.textContent = 'Started';
-                        if (progressTip) progressTip.textContent = 'Installer download in progress. Check your browser download shelf/bar.';
-                        downloadBtn.innerHTML = '✓ Download Started';
-                    }, 400);
-
-                    setTimeout(() => {
-                        downloadBtn.disabled = false;
-                        downloadBtn.textContent = originalText;
-                    }, 3500);
-                }
             } catch (err) {
                 console.error("Error triggering download:", err);
                 if (progressBox) progressBox.style.display = 'none';
                 dbErr.textContent = err.message || "Connection to installer server failed. Please try again.";
                 dbErr.style.display = 'block';
-                downloadBtn.disabled = false;
-                downloadBtn.textContent = originalText;
+                if (macBtn) {
+                    macBtn.disabled = false;
+                    macBtn.innerHTML = '🍏 Download for Mac (.dmg)';
+                }
+                if (winBtn) {
+                    winBtn.disabled = false;
+                    winBtn.innerHTML = '🪟 Download for Windows (.exe)';
+                }
             }
         }
 

@@ -474,6 +474,10 @@
                     </div>
                     <div class="subscription-body">
                         <div class="subscription-row">
+                            <span class="subscription-label">Plan Tier:</span>
+                            <span class="subscription-value"><strong id="subscription-tier-text" style="color: #0f172a;">Loading...</strong></span>
+                        </div>
+                        <div class="subscription-row">
                             <span class="subscription-label">License Key:</span>
                             <span class="subscription-value" id="subscription-key-display">
                                 <code id="subscription-key-text">Loading...</code>
@@ -485,7 +489,7 @@
                             <span class="subscription-value" id="subscription-period-text"></span>
                         </div>
                     </div>
-                    <div class="subscription-actions">
+                    <div class="subscription-actions" id="paid-subscription-actions">
                         <button id="manage-billing-btn" onclick="openBillingPortal()" class="btn btn-outline" title="Manage payment method, view invoices, or cancel plan">
                             💳 Manage Billing & Invoices
                         </button>
@@ -493,12 +497,29 @@
                             Cancel Subscription
                         </button>
                     </div>
+                    <div id="trial-subscribe-options" style="display: none; margin-top: 14px; padding-top: 12px; border-top: 1px solid #e5e7eb;">
+                        <div style="font-size: 12px; font-weight: 600; color: #374151; margin-bottom: 8px;">Ready to subscribe? Choose a plan:</div>
+                        <div style="display: flex; flex-direction: column; gap: 6px;">
+                            <a href="https://buy.stripe.com/eVqaEQ8pgafFfwJ8678g005" target="_blank" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; text-decoration: none; color: #0f172a; font-size: 12.5px; font-weight: 600;">
+                                <span>Analyst Plan</span>
+                                <span style="color: #0284c7;">$79.99 / mo &rarr;</span>
+                            </a>
+                            <a href="https://buy.stripe.com/7sY9AMaxo4VlfwJ9ab8g006" target="_blank" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #eff6ff; border: 1px solid #2563eb; border-radius: 6px; text-decoration: none; color: #0f172a; font-size: 12.5px; font-weight: 600;">
+                                <span>Pro Plan <span style="background: #2563eb; color: #fff; font-size: 10px; padding: 1px 6px; border-radius: 8px; margin-left: 4px;">Popular</span></span>
+                                <span style="color: #2563eb;">$99.99 / mo &rarr;</span>
+                            </a>
+                            <a href="https://buy.stripe.com/14A9AM7lc4Vl98l3PR8g007" target="_blank" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #ecfdf5; border: 1px solid #10b981; border-radius: 6px; text-decoration: none; color: #0f172a; font-size: 12.5px; font-weight: 600;">
+                                <span>Strategic Analysis Lab</span>
+                                <span style="color: #059669;">$299.99 / mo &rarr;</span>
+                            </a>
+                        </div>
+                    </div>
                     <div id="subscription-notice" class="subscription-notice" style="display: none;"></div>
                 </div>
 
                 <div class="download-box">
                     <div class="download-title">📥 Foresight Studio Desktop App</div>
-                    <div class="download-meta">Version 1.3.26 (Production Release)</div>
+                    <div class="download-meta">Version 1.3.27 (Production Release)</div>
                     <div style="display: flex; gap: 10px; margin-top: 14px; margin-bottom: 8px;">
                         <button id="download-mac-btn" onclick="triggerDownload('mac')" class="btn btn-primary" style="flex: 1; padding: 12px 10px; font-weight: 600;">
                             🍏 Download for Mac (.dmg)
@@ -524,7 +545,7 @@
                 </div>
 
                 <div class="info-tip">
-                    ℹ️ <strong>Next Steps:</strong> Once the download completes, run the installer to set up the desktop application on your computer. During startup, copy and paste your active license key sent to you via email to unlock the platform.
+                    ℹ️ <strong>Next Steps:</strong> Download and run the installer for your computer. Your <strong>7-day free trial of Strategic Analysis Lab</strong> activates automatically on first launch (no license key required). If you have purchased a subscription, copy your license key above and activate it from the top bar of the app.
                 </div>
 
                 <button onclick="handleLogout()" class="btn btn-secondary">Log Out</button>
@@ -546,6 +567,11 @@
 
         // Check authentication state on page load
         document.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('mode') === 'signup') {
+                toggleAuthMode();
+            }
+
             const { data: { session } } = await supabaseClient.auth.getSession();
             updateUI(session);
 
@@ -588,7 +614,7 @@
         }
 
         function toggleAuthMode(e) {
-            e.preventDefault();
+            if (e) e.preventDefault();
             isSignUpMode = !isSignUpMode;
             isRecoveryMode = false;
             isNewPasswordMode = false;
@@ -609,9 +635,9 @@
             document.getElementById('password-input').required = true;
 
             if (isSignUpMode) {
-                title.textContent = "Create Account";
-                subtitle.textContent = "Sign up using the exact email you used for payment";
-                submitBtn.textContent = "Sign Up";
+                title.textContent = "Start Your Free Trial";
+                subtitle.textContent = "Create an account to download Foresight Studio (no credit card required). If you already purchased a plan, use your payment email.";
+                submitBtn.textContent = "Create Account";
                 document.getElementById('forgot-link').style.display = 'none';
                 toggleContainer.innerHTML = 'Already have an account? <a href="#" onclick="toggleAuthMode(event)">Log In</a>';
             } else {
@@ -920,7 +946,7 @@
 
                 let finalDownloadUrl = data.downloadUrl;
                 if (targetOs === 'mac') {
-                    finalDownloadUrl = "https://download.foresightstudio.io/Foresight%20Studio-1.3.26-arm64.dmg";
+                    finalDownloadUrl = "https://download.foresightstudio.io/Foresight%20Studio-1.3.27-arm64.dmg";
                 }
 
                 if (progressLabel) progressLabel.textContent = `⬇️ Transferring ${targetOs === 'mac' ? 'macOS DMG' : 'Windows installer'} to browser...`;
@@ -973,11 +999,15 @@
         async function loadSubscriptionDetails(session) {
             if (!session) return;
             const badge = document.getElementById('subscription-status-badge');
+            const tierText = document.getElementById('subscription-tier-text');
             const keyText = document.getElementById('subscription-key-text');
+            const copyBtn = document.getElementById('copy-key-btn');
             const periodRow = document.getElementById('subscription-period-row');
             const periodText = document.getElementById('subscription-period-text');
             const notice = document.getElementById('subscription-notice');
             const cancelBtn = document.getElementById('cancel-sub-btn');
+            const paidActions = document.getElementById('paid-subscription-actions');
+            const trialOptions = document.getElementById('trial-subscribe-options');
 
             try {
                 const res = await fetch(`${SUPABASE_URL}/functions/v1/customer-portal`, {
@@ -991,13 +1021,25 @@
 
                 if (res.ok) {
                     const data = await res.json();
-                    if (data.licenseKey) {
-                        keyText.textContent = data.licenseKey;
-                    } else {
-                        keyText.textContent = "None on file";
+                    const status = (data.status || 'trial').toLowerCase();
+
+                    if (status === 'trial' || !data.licenseKey) {
+                        badge.textContent = '7-Day Free Trial';
+                        badge.className = 'subscription-status-badge badge-active';
+                        if (tierText) tierText.textContent = 'Strategic Analysis Lab (Trial)';
+                        keyText.textContent = 'Auto-activates on first launch';
+                        if (copyBtn) copyBtn.style.display = 'none';
+                        if (paidActions) paidActions.style.display = 'none';
+                        if (trialOptions) trialOptions.style.display = 'block';
+                        return;
                     }
 
-                    const status = (data.status || 'unlicensed').toLowerCase();
+                    if (tierText) tierText.textContent = data.licenseType || 'Pro';
+                    keyText.textContent = data.licenseKey;
+                    if (copyBtn) copyBtn.style.display = 'inline-block';
+                    if (paidActions) paidActions.style.display = 'flex';
+                    if (trialOptions) trialOptions.style.display = 'none';
+
                     badge.textContent = status === 'active' ? 'Active' : (status === 'canceled' ? 'Canceled' : status);
                     badge.className = `subscription-status-badge ${status === 'active' ? 'badge-active' : 'badge-canceled'}`;
 
@@ -1018,10 +1060,13 @@
                         periodText.textContent = dateStr;
                     }
                 } else {
-                    badge.textContent = 'None';
-                    badge.className = 'subscription-status-badge badge-canceled';
-                    keyText.textContent = 'No subscription found';
-                    if (cancelBtn) cancelBtn.style.display = 'none';
+                    badge.textContent = '7-Day Free Trial';
+                    badge.className = 'subscription-status-badge badge-active';
+                    if (tierText) tierText.textContent = 'Strategic Analysis Lab (Trial)';
+                    keyText.textContent = 'Auto-activates on first launch';
+                    if (copyBtn) copyBtn.style.display = 'none';
+                    if (paidActions) paidActions.style.display = 'none';
+                    if (trialOptions) trialOptions.style.display = 'block';
                 }
             } catch (err) {
                 console.error("Error loading subscription details:", err);

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foresight Studio - Visual Strategic Forecasting for Life Sciences</title>
     <link rel="icon" type="image/png" href="assets/FSFavicon.png">
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -182,7 +182,7 @@
                                     <span class="pricing-amount">$79.99</span>
                                     <span class="pricing-period">/ month</span>
                                 </div>
-                                <a href="https://buy.stripe.com/eVqaEQ8pgafFfwJ8678g005" class="btn btn-pricing-secondary" onclick="if(window.posthog)posthog.capture('clicked_subscribe', { tier: 'Analyst', price: 79.99 })">Subscribe to Analyst</a>
+                                <button type="button" class="btn btn-pricing-secondary" onclick="if(window.posthog)posthog.capture('clicked_subscribe', { tier: 'Analyst', price: 79.99 }); window.location.href='https://buy.stripe.com/eVqaEQ8pgafFfwJ8678g005';">Subscribe</button>
                             </th>
                             <!-- 2. Pro Column (Most Popular) -->
                             <th class="pricing-tier-col-header pricing-col-popular">
@@ -193,7 +193,7 @@
                                     <span class="pricing-amount">$99.99</span>
                                     <span class="pricing-period">/ month</span>
                                 </div>
-                                <a href="https://buy.stripe.com/7sY9AMaxo4VlfwJ9ab8g006" class="btn btn-pricing-primary" onclick="if(window.posthog)posthog.capture('clicked_subscribe', { tier: 'Pro', price: 99.99 })">Subscribe to Pro</a>
+                                <button type="button" class="btn btn-pricing-primary" onclick="if(window.posthog)posthog.capture('clicked_subscribe', { tier: 'Pro', price: 99.99 }); window.location.href='https://buy.stripe.com/7sY9AMaxo4VlfwJ9ab8g006';">Subscribe</button>
                             </th>
                             <!-- 3. Strategic Analysis Lab Column -->
                             <th class="pricing-tier-col-header pricing-col-lab">
@@ -204,7 +204,7 @@
                                     <span class="pricing-amount">$299.99</span>
                                     <span class="pricing-period">/ month</span>
                                 </div>
-                                <a href="https://buy.stripe.com/14A9AM7lc4Vl98l3PR8g007" class="btn btn-pricing-lab" onclick="if(window.posthog)posthog.capture('clicked_subscribe', { tier: 'Strategic Analysis Lab', price: 299.99 })">Subscribe to Strategic Lab</a>
+                                <button type="button" class="btn btn-pricing-lab" onclick="if(window.posthog)posthog.capture('clicked_subscribe', { tier: 'Strategic Analysis Lab', price: 299.99 }); window.location.href='https://buy.stripe.com/14A9AM7lc4Vl98l3PR8g007';">Subscribe</button>
                             </th>
                         </tr>
                     </thead>

@@ -162,95 +162,138 @@
     <section id="pricing" class="pricing-section">
         <div class="container">
             <div class="section-header">
-                <h2>Choose Your Analytical Depth</h2>
+                <h2>Compare Plans &amp; Features</h2>
                 <p>Evaluate the complete <strong>Strategic Analysis Lab</strong> free for 7 days (no credit card required), or subscribe directly to any plan below.</p>
             </div>
 
-            <div class="pricing-grid">
-                <!-- 1. Analyst Plan -->
-                <div class="pricing-card">
-                    <div class="pricing-card-header">
-                        <div class="pricing-tier-name">Analyst</div>
-                        <div class="pricing-tier-tagline">Biopharma Financial Modeling</div>
-                        <div class="pricing-price-block">
-                            <span class="pricing-amount">$79.99</span>
-                            <span class="pricing-period">/ month</span>
-                        </div>
-                        <p class="pricing-tier-desc">Core biopharma valuation, deterministic cash flow projections, and scenario planning.</p>
-                    </div>
-                    <a href="https://buy.stripe.com/eVqaEQ8pgafFfwJ8678g005" class="btn btn-pricing-secondary" onclick="if(window.posthog)posthog.capture('clicked_subscribe', { tier: 'Analyst', price: 79.99 })">Subscribe to Analyst</a>
-                    <div class="pricing-divider">What's Included</div>
-                    <ul class="pricing-feature-list">
-                        <li>All deterministic financial &amp; curve nodes</li>
-                        <li>CAGR, Bass Diffusion, Pricing, Prorate, Table</li>
-                        <li>Revenue, Expenses, P&amp;L, DCF &amp; Asset Valuation</li>
-                        <li>Scenario Sweeps &amp; Tornado Sensitivity Analysis</li>
-                        <li>Full Excel-style Undo / Redo &amp; File Management</li>
-                        <li>Visible Probabilistic Inputs (Teaser / Preview)</li>
-                    </ul>
-                    <div class="pricing-divider pricing-divider-muted">Not Included</div>
-                    <ul class="pricing-exclusion-list">
-                        <li>No Monte Carlo multi-iteration simulations</li>
-                        <li>No stochastic distribution nodes (PERT, Normal, etc.)</li>
-                        <li>No Decision Analysis (Decision Tree)</li>
-                    </ul>
-                </div>
+            <div class="pricing-table-wrapper">
+                <table class="pricing-comparison-table">
+                    <thead>
+                        <tr>
+                            <th class="pricing-feature-col-header">
+                                <div class="feature-col-title">Platform Capabilities</div>
+                                <p class="feature-col-sub">All plans include local-first data privacy, automatic updates, and macOS &amp; Windows desktop support.</p>
+                            </th>
+                            <!-- 1. Analyst Column -->
+                            <th class="pricing-tier-col-header">
+                                <div class="pricing-tier-name">Analyst</div>
+                                <div class="pricing-tier-tagline">Biopharma Financial Modeling</div>
+                                <div class="pricing-price-block">
+                                    <span class="pricing-amount">$79.99</span>
+                                    <span class="pricing-period">/ month</span>
+                                </div>
+                                <a href="https://buy.stripe.com/eVqaEQ8pgafFfwJ8678g005" class="btn btn-pricing-secondary" onclick="if(window.posthog)posthog.capture('clicked_subscribe', { tier: 'Analyst', price: 79.99 })">Subscribe to Analyst</a>
+                            </th>
+                            <!-- 2. Pro Column (Most Popular) -->
+                            <th class="pricing-tier-col-header pricing-col-popular">
+                                <div class="pricing-popular-badge">Most Popular</div>
+                                <div class="pricing-tier-name">Pro</div>
+                                <div class="pricing-tier-tagline">Probabilistic Risk &amp; Monte Carlo</div>
+                                <div class="pricing-price-block">
+                                    <span class="pricing-amount">$99.99</span>
+                                    <span class="pricing-period">/ month</span>
+                                </div>
+                                <a href="https://buy.stripe.com/7sY9AMaxo4VlfwJ9ab8g006" class="btn btn-pricing-primary" onclick="if(window.posthog)posthog.capture('clicked_subscribe', { tier: 'Pro', price: 99.99 })">Subscribe to Pro</a>
+                            </th>
+                            <!-- 3. Strategic Analysis Lab Column -->
+                            <th class="pricing-tier-col-header pricing-col-lab">
+                                <div class="pricing-lab-badge">Included in 7-Day Free Trial</div>
+                                <div class="pricing-tier-name">Strategic Analysis Lab</div>
+                                <div class="pricing-tier-tagline">Clinical Decision Science &amp; Real Options</div>
+                                <div class="pricing-price-block">
+                                    <span class="pricing-amount">$299.99</span>
+                                    <span class="pricing-period">/ month</span>
+                                </div>
+                                <a href="https://buy.stripe.com/14A9AM7lc4Vl98l3PR8g007" class="btn btn-pricing-lab" onclick="if(window.posthog)posthog.capture('clicked_subscribe', { tier: 'Strategic Analysis Lab', price: 299.99 })">Subscribe to Strategic Lab</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="pricing-category-row">
+                            <td colspan="4">Core Financial &amp; Commercial Modeling</td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-feature-name">Visual Driver Tree &amp; Influence Diagram Canvas</td>
+                            <td class="pricing-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                            <td class="pricing-cell pricing-col-popular-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                            <td class="pricing-cell pricing-col-lab-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-feature-name">Biopharma Curve Nodes (CAGR, Bass Diffusion Adoption, Market Share)</td>
+                            <td class="pricing-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                            <td class="pricing-cell pricing-col-popular-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                            <td class="pricing-cell pricing-col-lab-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-feature-name">Commercial &amp; Valuation Nodes (Pricing, Prorate, Revenue, Expenses, P&amp;L, DCF)</td>
+                            <td class="pricing-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                            <td class="pricing-cell pricing-col-popular-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                            <td class="pricing-cell pricing-col-lab-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-feature-name">Deterministic Scenario Sweeps &amp; Tornado Sensitivity Analysis</td>
+                            <td class="pricing-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                            <td class="pricing-cell pricing-col-popular-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                            <td class="pricing-cell pricing-col-lab-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-feature-name">Local-First File Management, Subgraph Modules &amp; Undo/Redo</td>
+                            <td class="pricing-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                            <td class="pricing-cell pricing-col-popular-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                            <td class="pricing-cell pricing-col-lab-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                        </tr>
 
-                <!-- 2. Pro Plan (Most Popular) -->
-                <div class="pricing-card pricing-card-popular">
-                    <div class="pricing-popular-badge">Most Popular</div>
-                    <div class="pricing-card-header">
-                        <div class="pricing-tier-name">Pro</div>
-                        <div class="pricing-tier-tagline">Probabilistic Risk &amp; Monte Carlo</div>
-                        <div class="pricing-price-block">
-                            <span class="pricing-amount">$99.99</span>
-                            <span class="pricing-period">/ month</span>
-                        </div>
-                        <p class="pricing-tier-desc">Advanced stochastic risk modeling with multi-iteration Monte Carlo simulations.</p>
-                    </div>
-                    <a href="https://buy.stripe.com/7sY9AMaxo4VlfwJ9ab8g006" class="btn btn-pricing-primary" onclick="if(window.posthog)posthog.capture('clicked_subscribe', { tier: 'Pro', price: 99.99 })">Subscribe to Pro</a>
-                    <div class="pricing-divider">What's Included</div>
-                    <ul class="pricing-feature-list">
-                        <li><strong>Everything included in Analyst, plus:</strong></li>
-                        <li>🎲 Probabilistic Variable Inputs (PERT min/mode/max)</li>
-                        <li>Full Distributions library (Normal, Beta, Pert, Triangular, etc.)</li>
-                        <li>High-performance multi-iteration Monte Carlo engine</li>
-                        <li>P10 / P50 / P90 confidence intervals &amp; risk distributions</li>
-                        <li>Stochastic Tornado &amp; variance-based sensitivity charts</li>
-                    </ul>
-                    <div class="pricing-divider pricing-divider-muted">Not Included</div>
-                    <ul class="pricing-exclusion-list">
-                        <li>No Decision Analysis (Decision Tree)</li>
-                    </ul>
-                </div>
+                        <tr class="pricing-category-row">
+                            <td colspan="4">Probabilistic Risk &amp; Monte Carlo Simulation</td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-feature-name">Probabilistic Variable Inputs (🎲 PERT Min / Mode / Max)</td>
+                            <td class="pricing-cell"><span class="icon-cross" aria-label="Not included">&#10005;</span></td>
+                            <td class="pricing-cell pricing-col-popular-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                            <td class="pricing-cell pricing-col-lab-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-feature-name">Probability Distributions Library (Normal, Beta, PERT, Triangular, Weibull, LogNormal)</td>
+                            <td class="pricing-cell"><span class="icon-cross" aria-label="Not included">&#10005;</span></td>
+                            <td class="pricing-cell pricing-col-popular-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                            <td class="pricing-cell pricing-col-lab-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-feature-name">Multi-Iteration Monte Carlo Simulation Engine</td>
+                            <td class="pricing-cell"><span class="icon-cross" aria-label="Not included">&#10005;</span></td>
+                            <td class="pricing-cell pricing-col-popular-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                            <td class="pricing-cell pricing-col-lab-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-feature-name">P10 / P50 / P90 Confidence Intervals &amp; Stochastic Tornado Charts</td>
+                            <td class="pricing-cell"><span class="icon-cross" aria-label="Not included">&#10005;</span></td>
+                            <td class="pricing-cell pricing-col-popular-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                            <td class="pricing-cell pricing-col-lab-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                        </tr>
 
-                <!-- 3. Strategic Analysis Lab Plan -->
-                <div class="pricing-card pricing-card-lab">
-                    <div class="pricing-lab-badge">Included in 7-Day Free Trial</div>
-                    <div class="pricing-card-header">
-                        <div class="pricing-tier-name">Strategic Analysis Lab</div>
-                        <div class="pricing-tier-tagline">Clinical Decision Science &amp; Real Options</div>
-                        <div class="pricing-price-block">
-                            <span class="pricing-amount">$299.99</span>
-                            <span class="pricing-period">/ month</span>
-                        </div>
-                        <p class="pricing-tier-desc">Comprehensive strategic intelligence lab for pipeline asset valuation and clinical decisions.</p>
-                    </div>
-                    <a href="https://buy.stripe.com/14A9AM7lc4Vl98l3PR8g007" class="btn btn-pricing-lab" onclick="if(window.posthog)posthog.capture('clicked_subscribe', { tier: 'Strategic Analysis Lab', price: 299.99 })">Subscribe to Strategic Lab</a>
-                    <div class="pricing-divider">What's Included</div>
-                    <ul class="pricing-feature-list">
-                        <li><strong>Everything included in Pro, plus:</strong></li>
-                        <li>🌳 Decision Tree &amp; Clinical Development Pathways</li>
-                        <li>Stage-gated clinical transition probabilities (Phase 1–3, Approval)</li>
-                        <li>Continuous WACC discounting with timeline-aware discount curves</li>
-                        <li>Real options valuation &amp; Expected Net Present Value (eNPV)</li>
-                        <li>Multi-branch clinical scenario portfolio valuation</li>
-                        <li>Unrestricted access to all Foresight Studio capabilities</li>
-                    </ul>
-                    <div class="pricing-lab-footer">
-                        ✨ Complete unrestricted access
-                    </div>
-                </div>
+                        <tr class="pricing-category-row">
+                            <td colspan="4">Clinical Decision Science &amp; Real Options</td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-feature-name">Time-Aware Decision Tree Node &amp; Clinical Development Pathways</td>
+                            <td class="pricing-cell"><span class="icon-cross" aria-label="Not included">&#10005;</span></td>
+                            <td class="pricing-cell pricing-col-popular-cell"><span class="icon-cross" aria-label="Not included">&#10005;</span></td>
+                            <td class="pricing-cell pricing-col-lab-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-feature-name">Stage-Gated Clinical Transition Probabilities (Phase 1–3 &amp; Approval)</td>
+                            <td class="pricing-cell"><span class="icon-cross" aria-label="Not included">&#10005;</span></td>
+                            <td class="pricing-cell pricing-col-popular-cell"><span class="icon-cross" aria-label="Not included">&#10005;</span></td>
+                            <td class="pricing-cell pricing-col-lab-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-feature-name">Continuous WACC Discounting, Real Options &amp; Expected NPV (eNPV)</td>
+                            <td class="pricing-cell"><span class="icon-cross" aria-label="Not included">&#10005;</span></td>
+                            <td class="pricing-cell pricing-col-popular-cell"><span class="icon-cross" aria-label="Not included">&#10005;</span></td>
+                            <td class="pricing-cell pricing-col-lab-cell"><span class="icon-check" aria-label="Included">&#10003;</span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="pricing-trial-banner">

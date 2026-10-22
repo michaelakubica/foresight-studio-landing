@@ -757,43 +757,57 @@ p {
 .btn-pricing-secondary,
 .btn-pricing-primary,
 .btn-pricing-lab {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    padding: 11px 14px;
-    font-size: 0.88rem;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    font-weight: 700;
     border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
 }
 
 .btn-pricing-secondary {
-    background-color: #f1f5f9;
-    color: var(--text-primary);
-    border: 1px solid #cbd5e1;
+    background-color: #0f172a;
+    color: #ffffff;
+    border: 1px solid #0f172a;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
 }
 
 .btn-pricing-secondary:hover {
-    background-color: #e2e8f0;
+    background-color: #1e293b;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.25);
 }
 
 .btn-pricing-primary {
     background-color: #2563eb;
     color: #ffffff;
-    border: none;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.22);
+    border: 1px solid #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
 
 .btn-pricing-primary:hover {
     background-color: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
 }
 
 .btn-pricing-lab {
     background-color: #10b981;
     color: #ffffff;
-    border: none;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.22);
+    border: 1px solid #10b981;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
 }
 
 .btn-pricing-lab:hover {
     background-color: #059669;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
 }
 
 .pricing-category-row td {

@@ -274,7 +274,8 @@ p {
 
 .hero-ctas {
     display: flex;
-    gap: 15px;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 /* Hero Notice Card */
@@ -374,10 +375,66 @@ p {
     font-family: monospace;
 }
 
+.mockup-preview-tabs {
+    margin-left: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mockup-tab-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #475569;
+    background: #e2e8f0;
+    transition: all 0.15s ease;
+}
+
+.mockup-tab-pill.active,
+.mockup-tab-pill:hover {
+    background: #1e40af;
+    color: #ffffff;
+}
+
 .mockup-body {
     flex: 1;
     background-color: #ffffff;
     position: relative;
+}
+
+.mockup-body-link {
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.mockup-interactive-badge {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.86);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease;
+}
+
+.mockup-body-link:hover .mockup-interactive-badge {
+    background: #1e40af;
+    transform: translateX(-50%) translateY(-2px);
 }
 
 .screenshot-img {

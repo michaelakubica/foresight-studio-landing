@@ -37,6 +37,7 @@
             <nav class="nav-menu">
                 <a href="#about">About</a>
                 <a href="#features">Features</a>
+                <a href="/preview.html" data-attr="cta-nav-live-preview" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'nav', cta: 'live_model_preview' })">Live Model &amp; Dashboard</a>
                 <a href="#pricing">Pricing</a>
                 <a href="/dashboard" data-attr="cta-nav-signin" onclick="if(window.posthog)posthog.capture('clicked_signin', { location: 'nav' })">Sign In</a>
             </nav>
@@ -55,6 +56,7 @@
                 <p class="hero-lead">Whether evaluating an acquisition, prioritizing a pipeline asset, or building a multi-year strategic plan, your decisions are only as sound as the models behind them. Foresight Studio replaces opaque spreadsheets with transparent, probabilistic visual workflows—giving you the rigor and clarity to decide with confidence.</p>
                 <div class="hero-ctas">
                     <a href="/dashboard?mode=signup" class="btn btn-hero-primary" data-attr="cta-hero-trial" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'hero', cta: 'start_free_trial' })">Start 7-Day Free Trial</a>
+                    <a href="/preview.html" class="btn btn-hero-secondary" data-attr="cta-hero-live-preview" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'hero', cta: 'live_model_preview' })">🔍 Explore Live Model &amp; Dashboard</a>
                 </div>
                 <div class="hero-trial-subtext">
                     ✨ Full 7-day access to <strong>Strategic Analysis Lab</strong> &middot; No credit card required
@@ -79,11 +81,17 @@
                             <span class="dot dot-yellow"></span>
                             <span class="dot dot-green"></span>
                         </div>
-                        <div class="tab-title">foresight_studio_overview</div>
+                        <div class="mockup-preview-tabs">
+                            <a href="/preview.html?tab=canvas" class="mockup-tab-pill active" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'hero_mockup', cta: 'preview_tab_canvas' })">🕸️ 1. Visual Model Canvas</a>
+                            <a href="/preview.html?tab=dashboard" class="mockup-tab-pill" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'hero_mockup', cta: 'preview_tab_dashboard' })">📊 2. Executive Dashboard</a>
+                        </div>
                     </div>
-                    <div class="mockup-body">
+                    <a href="/preview.html" class="mockup-body mockup-body-link" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'hero_mockup', cta: 'open_live_preview' })">
                         <img src="assets/fss_screen_shots.png" alt="Foresight Studio Visual Modeling &amp; Risk Analysis Platform" class="screenshot-img">
-                    </div>
+                        <div class="mockup-interactive-badge">
+                            <span>▶ Click to Explore Live Market Model &amp; DCF Dashboard</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

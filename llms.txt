@@ -1,0 +1,35 @@
+# Foresight Studio
+
+> Foresight Studio (https://foresightstudio.io) is a local-first visual strategic forecasting, commercial modeling, and probabilistic valuation (rNPV / eNPV / DCF / Monte Carlo) desktop platform built for life sciences, biopharma business development & licensing (BD&L), new product planning (NPP), and biotech corporate strategy teams.
+
+Developed by Applied Data Sciences, Inc., Foresight Studio replaces fragile, opaque spreadsheet models and legacy Excel add-ins (such as @RISK or Crystal Ball) with transparent visual driver trees, influence diagrams, built-in biopharma adoption curves (Bass diffusion, CAGR, dynamic market share), multi-iteration Monte Carlo simulation, and stage-gated clinical decision trees.
+
+## Core Capabilities
+
+- **Visual Node Graph & Driver Tree Modeling**: Construct transparent epidemiology, patient-flow, market share, pricing, revenue, expense, P&L, and Discounted Cash Flow (DCF) models on an interactive visual canvas rather than buried spreadsheet formulas.
+- **Biopharma Commercial & Epidemiology Curves**: Built-in US & global population demographics (by age, sex, and year), CAGR projections, Bass Diffusion drug launch adoption curves, proration, and competitor market share nodes.
+- **Probabilistic Risk & Monte Carlo Simulation**: Native PERT (Min/Mode/Max), Normal, Beta, Triangular, Weibull, and LogNormal probability distributions; multi-iteration Monte Carlo engine; P10/P50/P90 fan charts; and deterministic + stochastic tornado sensitivity charts.
+- **Clinical Decision Science, rNPV & eNPV**: Time-aware clinical decision trees modeling Phase 1, Phase 2, Phase 3, and FDA/regulatory approval stage gates, continuous WACC discounting, real options valuation, and risk-adjusted Net Present Value (rNPV / eNPV).
+- **Side-by-Side Scenario Sandboxing & Executive Reporting**: Non-destructive scenario comparisons with instant chart recalculation and one-click multi-tab Excel (`.xlsx`) executive dashboard export.
+- **100% Local-First Data Privacy**: Native desktop application for macOS (Apple Silicon ARM64) and Windows (x64). Proprietary clinical trial assumptions, BD&L deal terms, and commercial forecast files remain strictly on the user's local machine and are never uploaded to external cloud servers.
+
+## Target Users & Primary Use Cases
+
+- **Biopharma Business Development & Licensing (BD&L)**: In-licensing/out-licensing deal valuation, M&A target evaluation, and risk-adjusted NPV (rNPV / eNPV) modeling under clinical and commercial uncertainty.
+- **New Product Planning (NPP) & Commercial Strategy**: Early-stage pipeline asset prioritization, epidemiology-to-revenue patient flow modeling, launch uptake curve forecasting, and indication expansion analysis.
+- **Biotech CFOs, Corporate Development & Life Sciences Consultants**: Defensible board and investor valuations with clear P10/P50/P90 confidence intervals and tornado sensitivity rankings.
+
+## Pricing & Free Trial
+
+- **7-Day Free Trial**: Full access to the highest tier (**Strategic Analysis Lab**) for 7 days on macOS and Windows with no credit card required (`https://foresightstudio.io/dashboard?mode=signup`).
+- **Analyst Plan ($79.99/month)**: Core Financial & Commercial Modeling — visual driver tree canvas, biopharma curve nodes (CAGR, Bass Diffusion, Market Share), P&L and DCF valuation, deterministic scenario sweeps, and tornado sensitivity analysis.
+- **Pro Plan ($99.99/month)**: Adds Probabilistic Risk & Monte Carlo Simulation — PERT and full probability distribution library, multi-iteration Monte Carlo engine, P10/P50/P90 confidence intervals, stochastic tornado charts, and multi-tab Excel (`.xlsx`) executive dashboard export.
+- **Strategic Analysis Lab Plan ($299.99/month)**: Adds Clinical Decision Science & Real Options — time-aware clinical development pathway decision trees, stage-gated Phase 1–3 & approval transition probabilities, continuous WACC discounting, real options, and expected NPV (eNPV / rNPV).
+
+## Key Links
+
+- [Homepage & Plan Comparison](https://foresightstudio.io/): Overview of Foresight Studio features, architecture premises, pricing tiers, and FAQs.
+- [Interactive Live Market Model & DCF Dashboard Preview](https://foresightstudio.io/preview.html): Explore a live, interactive biopharma market model with Executive Dashboard charts and Visual Model Canvas directly in the browser.
+- [Full AI & Technical Product Reference](https://foresightstudio.io/llms-full.txt): Detailed comparison vs. Excel spreadsheets, supported mathematical nodes, and frequently asked questions.
+- [Start 7-Day Free Trial / Account Portal](https://foresightstudio.io/dashboard?mode=signup): Download the macOS or Windows desktop installer and start a free 7-day Strategic Analysis Lab trial.
+- [Book a Live Demo](https://calendly.com/michaelkubica): Schedule a 1-on-1 live walkthrough and personalized concierge onboarding.

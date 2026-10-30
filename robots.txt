@@ -1,0 +1,38 @@
+# Foresight Studio — Search & AI Crawler Directives
+# https://foresightstudio.io
+
+User-agent: *
+Allow: /
+Allow: /preview.html
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+# Explicitly allow AI Search & Answer Engines (GEO / AEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+Sitemap: https://foresightstudio.io/sitemap.xml

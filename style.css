@@ -953,6 +953,101 @@ p {
     min-width: 280px;
 }
 
+/* FAQ Section */
+.faq-section {
+    padding: 90px 0;
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+.faq-list {
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.faq-item {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+.faq-item[open] {
+    border-color: rgba(30, 64, 175, 0.35);
+    box-shadow: var(--shadow-md);
+}
+
+.faq-question {
+    list-style: none;
+    padding: 20px 24px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    user-select: none;
+}
+
+.faq-question::-webkit-details-marker {
+    display: none;
+}
+
+.faq-question::after {
+    content: "+";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #f1f5f9;
+    color: var(--accent-blue);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.faq-item[open] .faq-question::after {
+    content: "−";
+    background-color: var(--accent-blue);
+    color: #ffffff;
+}
+
+.faq-item::details-content {
+    display: block;
+}
+
+.faq-answer {
+    padding: 0 24px 22px 24px;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 16px;
+}
+
+.faq-answer p {
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.faq-answer code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.88em;
+    background-color: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--text-primary);
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 968px) {
     h1 {

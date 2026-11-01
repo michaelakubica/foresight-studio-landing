@@ -1048,6 +1048,113 @@ p {
     color: var(--text-primary);
 }
 
+/* Life Sciences Vertical Solutions & Strategic Analysis Section */
+.solutions-section {
+    padding: 100px 0;
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+
+.solution-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-top: 4px solid var(--accent-blue);
+    border-radius: 12px;
+    padding: 34px 32px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.solution-card:nth-child(odd) {
+    border-top-color: var(--accent-red);
+}
+
+.solution-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.solution-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.solution-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.solution-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-blue);
+    margin-bottom: 4px;
+}
+
+.solution-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0;
+    line-height: 1.3;
+}
+
+.solution-desc {
+    font-size: 0.98rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.solution-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.solution-bullets li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+
+.solution-bullets li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent-blue);
+    font-weight: 800;
+}
+
+.solution-bullets li strong {
+    color: var(--text-primary);
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 968px) {
     h1 {
@@ -1084,6 +1191,10 @@ p {
     }
     
     .premises-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .solutions-grid {
         grid-template-columns: 1fr;
     }
     

@@ -33,4 +33,4 @@ Developed by Applied Data Sciences, Inc., Foresight Studio replaces fragile, opa
 - [Interactive Live Market Model & DCF Dashboard Preview](https://foresightstudio.io/preview.html): Explore a live, interactive market model with Executive Dashboard charts and Visual Model Canvas directly in the browser.
 - [Full AI & Technical Product Reference](https://foresightstudio.io/llms-full.txt): Detailed vertical workflows, comparison vs. Excel spreadsheets, supported mathematical nodes, and FAQs.
 - [Start 7-Day Free Trial / Account Portal](https://foresightstudio.io/dashboard?mode=signup): Download the macOS or Windows desktop installer and start a free 7-day Strategic Analysis Lab trial.
-- [Book a Live Demo](https://calendly.com/michaelkubica/foresight-studio-live-demo): Schedule a 1-on-1 live walkthrough and personalized concierge onboarding.
+- [Book a Live Demo](https://calendly.com/michaelkubica/foresight-studio-live-demo?back=1&month=2026-11): Schedule a 1-on-1 live walkthrough and personalized concierge onboarding.

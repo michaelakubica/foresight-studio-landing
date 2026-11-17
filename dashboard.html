@@ -48,6 +48,71 @@
             max-width: 450px;
             padding: 20px;
             box-sizing: border-box;
+            transition: max-width 0.25s ease;
+        }
+
+        .dashboard-container.admin-wide {
+            max-width: 980px;
+        }
+
+        .reseller-admin-card {
+            display: none;
+            margin-top: 22px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            text-align: left;
+        }
+
+        .reseller-table-wrap {
+            overflow-x: auto;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: #ffffff;
+            margin-top: 10px;
+        }
+
+        .reseller-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        .reseller-table th {
+            background: #f8fafc;
+            color: #475569;
+            font-weight: 700;
+            text-align: left;
+            padding: 9px 10px;
+            border-bottom: 1px solid #e2e8f0;
+            white-space: nowrap;
+        }
+
+        .reseller-table td {
+            padding: 9px 10px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #1e293b;
+            vertical-align: middle;
+        }
+
+        .reseller-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .reseller-mini-btn {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            padding: 4px 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #334155;
+            cursor: pointer;
+        }
+
+        .reseller-mini-btn:hover {
+            background: #eff6ff;
+            border-color: #3b82f6;
+            color: #1d4ed8;
         }
 
         .logo-area {
@@ -498,15 +563,15 @@
                     <div id="trial-subscribe-options" style="display: none; margin-top: 14px; padding-top: 12px; border-top: 1px solid #e5e7eb;">
                         <div style="font-size: 12px; font-weight: 600; color: #374151; margin-bottom: 8px;">Ready to subscribe? Choose a plan:</div>
                         <div style="display: flex; flex-direction: column; gap: 6px;">
-                            <a href="https://buy.stripe.com/eVqaEQ8pgafFfwJ8678g005" target="_blank" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; text-decoration: none; color: #0f172a; font-size: 12.5px; font-weight: 600;">
+                            <a id="subscribe-analyst-link" data-base-href="https://buy.stripe.com/eVqaEQ8pgafFfwJ8678g005" href="https://buy.stripe.com/eVqaEQ8pgafFfwJ8678g005" target="_blank" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; text-decoration: none; color: #0f172a; font-size: 12.5px; font-weight: 600;">
                                 <span>Analyst Plan</span>
                                 <span style="color: #0284c7;">$79.99 / mo &rarr;</span>
                             </a>
-                            <a href="https://buy.stripe.com/7sY9AMaxo4VlfwJ9ab8g006" target="_blank" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #eff6ff; border: 1px solid #2563eb; border-radius: 6px; text-decoration: none; color: #0f172a; font-size: 12.5px; font-weight: 600;">
+                            <a id="subscribe-pro-link" data-base-href="https://buy.stripe.com/7sY9AMaxo4VlfwJ9ab8g006" href="https://buy.stripe.com/7sY9AMaxo4VlfwJ9ab8g006" target="_blank" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #eff6ff; border: 1px solid #2563eb; border-radius: 6px; text-decoration: none; color: #0f172a; font-size: 12.5px; font-weight: 600;">
                                 <span>Pro Plan <span style="background: #2563eb; color: #fff; font-size: 10px; padding: 1px 6px; border-radius: 8px; margin-left: 4px;">Popular</span></span>
                                 <span style="color: #2563eb;">$99.99 / mo &rarr;</span>
                             </a>
-                            <a href="https://buy.stripe.com/14A9AM7lc4Vl98l3PR8g007" target="_blank" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #ecfdf5; border: 1px solid #10b981; border-radius: 6px; text-decoration: none; color: #0f172a; font-size: 12.5px; font-weight: 600;">
+                            <a id="subscribe-lab-link" data-base-href="https://buy.stripe.com/14A9AM7lc4Vl98l3PR8g007" href="https://buy.stripe.com/14A9AM7lc4Vl98l3PR8g007" target="_blank" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #ecfdf5; border: 1px solid #10b981; border-radius: 6px; text-decoration: none; color: #0f172a; font-size: 12.5px; font-weight: 600;">
                                 <span>Strategic Analysis Lab</span>
                                 <span style="color: #059669;">$299.99 / mo &rarr;</span>
                             </a>
@@ -517,7 +582,7 @@
 
                 <div class="download-box">
                     <div class="download-title">📥 Foresight Studio Desktop App</div>
-                    <div class="download-meta">Version 1.3.51 (Production Release)</div>
+                    <div class="download-meta">Version 1.3.52 (Production Release)</div>
                     <div style="display: flex; gap: 10px; margin-top: 14px; margin-bottom: 8px;">
                         <button id="download-mac-btn" onclick="triggerDownload('mac')" class="btn btn-primary" style="flex: 1; padding: 12px 10px; font-weight: 600;">
                             🍏 Download for Mac (.dmg)
@@ -546,7 +611,66 @@
                     ℹ️ <strong>Next Steps:</strong> Download and run the installer for your computer. Your <strong>7-day free trial of Strategic Analysis Lab</strong> activates automatically on first launch (no license key required). If you have purchased a subscription, copy your license key above and activate it from the top bar of the app.
                 </div>
 
-                <button onclick="handleLogout()" class="btn btn-secondary">Log Out</button>
+                <!-- Admin-Only Reseller & Commission Management Panel -->
+                <div id="reseller-admin-card" class="reseller-admin-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+                        <div>
+                            <div style="font-size: 15px; font-weight: 700; color: #0f172a;">🤝 Reseller &amp; Commission Management (Admin)</div>
+                            <div style="font-size: 12px; color: #64748b;">Create referral links, track active clients by license tier, and calculate monthly 20% payouts.</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <label for="reseller-month-picker" style="margin: 0; font-size: 12px; font-weight: 600; color: #334155;">Billing Month:</label>
+                            <input type="month" id="reseller-month-picker" onchange="loadResellerReport()" style="width: auto; padding: 5px 8px; font-size: 12px;">
+                            <button type="button" class="reseller-mini-btn" onclick="loadResellerReport()">🔄 Refresh</button>
+                            <button type="button" class="reseller-mini-btn" onclick="exportResellerCsv()">📥 Export CSV</button>
+                        </div>
+                    </div>
+
+                    <!-- Add / Update Reseller Bar -->
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px;">
+                        <div style="font-size: 11.5px; font-weight: 700; color: #334155; margin-bottom: 6px;">Add or Update Reseller</div>
+                        <div style="display: grid; grid-template-columns: 1.3fr 1fr 1.4fr 0.7fr auto; gap: 8px; align-items: center;">
+                            <input type="text" id="reseller-name-input" placeholder="Full Name (e.g. Jane Doe)" style="padding: 7px 10px; font-size: 12px;">
+                            <input type="text" id="reseller-code-input" placeholder="Code (e.g. jdoe)" style="padding: 7px 10px; font-size: 12px;">
+                            <input type="email" id="reseller-email-input" placeholder="Reseller Email (optional)" style="padding: 7px 10px; font-size: 12px;">
+                            <input type="number" id="reseller-rate-input" value="20" min="0" max="100" step="1" title="Commission %" placeholder="20%" style="padding: 7px 10px; font-size: 12px;">
+                            <button type="button" class="btn btn-primary" onclick="saveReseller()" style="width: auto; padding: 7px 14px; font-size: 12px; white-space: nowrap;">+ Save Reseller</button>
+                        </div>
+                    </div>
+
+                    <!-- Manual Client Attribution Helper -->
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                        <span style="font-size: 11.5px; font-weight: 600; color: #475569;">Assign Client to Reseller:</span>
+                        <input type="email" id="assign-client-email" placeholder="client@company.com" style="flex: 1; min-width: 180px; padding: 6px 9px; font-size: 12px;">
+                        <input type="text" id="assign-client-code" placeholder="Reseller code (e.g. jdoe)" style="width: 160px; padding: 6px 9px; font-size: 12px;">
+                        <button type="button" class="reseller-mini-btn" onclick="assignClientToReseller()" style="padding: 6px 12px;">Link Client</button>
+                    </div>
+
+                    <!-- Reseller Monthly Summary Table -->
+                    <div class="reseller-table-wrap">
+                        <table class="reseller-table">
+                            <thead>
+                                <tr>
+                                    <th>Reseller</th>
+                                    <th style="text-align: center;">Trials</th>
+                                    <th style="text-align: center;">Analyst ($79.99)</th>
+                                    <th style="text-align: center;">Pro ($99.99)</th>
+                                    <th style="text-align: center;">Lab ($299.99)</th>
+                                    <th style="text-align: center;">Total Paid</th>
+                                    <th style="text-align: right;">Gross Rev (Mo)</th>
+                                    <th style="text-align: right;">Commission Owed</th>
+                                    <th style="text-align: center;">Payout</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reseller-table-body">
+                                <tr><td colspan="10" style="text-align: center; color: #64748b; padding: 16px;">Loading reseller data...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <button onclick="handleLogout()" class="btn btn-secondary" style="margin-top: 14px;">Log Out</button>
             </div>
         </div>
     </div>
@@ -562,9 +686,57 @@
         let isSignUpMode = false;
         let isRecoveryMode = false;
         let isNewPasswordMode = false;
+        let lastResellerReport = null;
+
+        function getStoredReferrer() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const urlRef = params.get('ref') || params.get('referrer') || params.get('client_reference_id');
+                if (urlRef) {
+                    const cleanRef = String(urlRef).trim().toLowerCase().replace(/[^a-z0-9_-]/g, '');
+                    if (cleanRef) {
+                        localStorage.setItem('foresight_referrer', cleanRef);
+                        document.cookie = `foresight_referrer=${encodeURIComponent(cleanRef)}; path=/; max-age=7776000; SameSite=Lax`;
+                        params.delete('ref');
+                        params.delete('referrer');
+                        const nextQuery = params.toString();
+                        const cleanUrl = window.location.pathname + (nextQuery ? `?${nextQuery}` : '') + window.location.hash;
+                        history.replaceState(null, null, cleanUrl);
+                        return cleanRef;
+                    }
+                }
+                const stored = localStorage.getItem('foresight_referrer');
+                if (stored) return stored;
+                const cookieMatch = document.cookie.match(/(?:^|;\s*)foresight_referrer=([^;]+)/);
+                return cookieMatch ? decodeURIComponent(cookieMatch[1]) : null;
+            } catch (_) {
+                return null;
+            }
+        }
+
+        function decorateDashboardCheckoutLinks(referrerCode, userEmail) {
+            const ref = referrerCode || getStoredReferrer();
+            ['subscribe-analyst-link', 'subscribe-pro-link', 'subscribe-lab-link'].forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                const base = el.getAttribute('data-base-href') || el.getAttribute('href');
+                const qp = new URLSearchParams();
+                if (ref) qp.set('client_reference_id', ref);
+                if (userEmail) qp.set('prefilled_email', userEmail);
+                const qs = qp.toString();
+                el.setAttribute('href', qs ? `${base}?${qs}` : base);
+            });
+        }
 
         // Check authentication state on page load
         document.addEventListener('DOMContentLoaded', async () => {
+            getStoredReferrer();
+            const monthPicker = document.getElementById('reseller-month-picker');
+            if (monthPicker && !monthPicker.value) {
+                const now = new Date();
+                monthPicker.value = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+            }
+
             const params = new URLSearchParams(window.location.search);
             if (params.get('mode') === 'signup') {
                 toggleAuthMode();
@@ -590,6 +762,8 @@
             const authStateDiv = document.getElementById('auth-state');
             const loggedInStateDiv = document.getElementById('logged-in-state');
             const userEmailBadge = document.getElementById('user-email');
+            const adminCard = document.getElementById('reseller-admin-card');
+            const dashContainer = document.querySelector('.dashboard-container');
             
             // Clear alerts
             clearAlerts();
@@ -600,12 +774,21 @@
                         email: session.user.email
                     });
                 }
+                const storedRef = getStoredReferrer();
+                const existingMetaRef = session.user && session.user.user_metadata && session.user.user_metadata.referrer_code;
+                if (storedRef && !existingMetaRef) {
+                    supabaseClient.auth.updateUser({ data: { referrer_code: storedRef } }).catch(() => {});
+                }
+                decorateDashboardCheckoutLinks(existingMetaRef || storedRef, session.user ? session.user.email : null);
+
                 authStateDiv.style.display = 'none';
                 loggedInStateDiv.style.display = 'block';
                 userEmailBadge.textContent = session.user.email;
                 loadSubscriptionDetails(session);
                 prefetchDownloadUrl(session);
             } else {
+                if (adminCard) adminCard.style.display = 'none';
+                if (dashContainer) dashContainer.classList.remove('admin-wide');
                 authStateDiv.style.display = 'block';
                 loggedInStateDiv.style.display = 'none';
             }
@@ -790,9 +973,11 @@
                     successAlert.style.display = 'block';
 
                 } else if (isSignUpMode) {
+                    const refCode = getStoredReferrer();
                     const { data, error } = await supabaseClient.auth.signUp({
                         email,
-                        password
+                        password,
+                        options: refCode ? { data: { referrer_code: refCode } } : undefined
                     });
 
                     if (error) throw error;
@@ -1039,6 +1224,18 @@
                     const data = await res.json();
                     const status = (data.status || 'trial').toLowerCase();
 
+                    if (data.referrerCode) {
+                        decorateDashboardCheckoutLinks(data.referrerCode, session.user ? session.user.email : null);
+                    }
+
+                    const adminCard = document.getElementById('reseller-admin-card');
+                    const dashContainer = document.querySelector('.dashboard-container');
+                    if (data.isAdmin && adminCard) {
+                        adminCard.style.display = 'block';
+                        if (dashContainer) dashContainer.classList.add('admin-wide');
+                        loadResellerReport();
+                    }
+
                     if (status === 'trial' || !data.licenseKey) {
                         badge.textContent = '7-Day Free Trial';
                         badge.className = 'subscription-status-badge badge-active';
@@ -1175,6 +1372,261 @@
                     setTimeout(() => { copyBtn.textContent = '📋 Copy'; }, 2000);
                 });
             }
+        }
+
+        // -----------------------------------------------------------------
+        // Admin Reseller & Commission Management Functions
+        // -----------------------------------------------------------------
+        async function callResellerAdminApi(payload) {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (!session) throw new Error("Not authenticated");
+            const res = await fetch(`${SUPABASE_URL}/functions/v1/customer-portal`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${session.access_token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error || "Admin API request failed");
+            return data;
+        }
+
+        async function loadResellerReport() {
+            const tbody = document.getElementById('reseller-table-body');
+            const monthPicker = document.getElementById('reseller-month-picker');
+            if (!tbody) return;
+            const month = monthPicker && monthPicker.value ? monthPicker.value : '';
+            tbody.innerHTML = `<tr><td colspan="10" style="text-align: center; color: #64748b; padding: 14px;">Loading reseller breakdown...</td></tr>`;
+
+            try {
+                const data = await callResellerAdminApi({ action: 'reseller_report', month });
+                lastResellerReport = data;
+                if (monthPicker && data.month && !monthPicker.value) {
+                    monthPicker.value = data.month;
+                }
+                renderResellerTable(data.resellers || [], data.month);
+            } catch (err) {
+                tbody.innerHTML = `<tr><td colspan="10" style="text-align: center; color: #ef4444; padding: 14px;">${err.message}</td></tr>`;
+            }
+        }
+
+        function renderResellerTable(resellers, month) {
+            const tbody = document.getElementById('reseller-table-body');
+            if (!tbody) return;
+            if (!Array.isArray(resellers) || resellers.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="10" style="text-align: center; color: #64748b; padding: 16px;">No resellers configured yet. Add a reseller above to generate referral links.</td></tr>`;
+                return;
+            }
+
+            let html = '';
+            resellers.forEach(r => {
+                const c = r.counts || { trials: 0, analyst: 0, pro: 0, lab: 0, totalPaid: 0 };
+                const paidBadge = r.paid
+                    ? `<button type="button" class="reseller-mini-btn" style="background:#dcfce7; border-color:#86efac; color:#166534;" onclick="toggleResellerPaid('${r.code}')" title="Click to mark Unpaid">Paid ✓</button>`
+                    : `<button type="button" class="reseller-mini-btn" style="background:#fef3c7; border-color:#fde68a; color:#92400e;" onclick="toggleResellerPaid('${r.code}')" title="Click to mark Paid">Mark Paid</button>`;
+
+                html += `
+                    <tr>
+                        <td>
+                            <div style="font-weight: 700; color: #0f172a;">${r.name}</div>
+                            <div style="font-size: 11px; color: #64748b;"><code>?ref=${r.code}</code> (${r.commissionRate || 20}%)</div>
+                        </td>
+                        <td style="text-align: center; font-weight: 600; color: #64748b;">${c.trials}</td>
+                        <td style="text-align: center; font-weight: 600; color: #0284c7;">${c.analyst}</td>
+                        <td style="text-align: center; font-weight: 600; color: #2563eb;">${c.pro}</td>
+                        <td style="text-align: center; font-weight: 600; color: #059669;">${c.lab}</td>
+                        <td style="text-align: center; font-weight: 700; color: #0f172a;">${c.totalPaid}</td>
+                        <td style="text-align: right; font-weight: 600;">$${Number(r.revenueMonth || 0).toFixed(2)}</td>
+                        <td style="text-align: right; font-weight: 700; color: #059669;">$${Number(r.commissionMonth || 0).toFixed(2)}</td>
+                        <td style="text-align: center;">${paidBadge}</td>
+                        <td style="text-align: right; white-space: nowrap;">
+                            <button type="button" class="reseller-mini-btn" onclick="copyResellerLinks('${r.code}', '${String(r.name || '').replace(/'/g, "\\'")}')" title="Copy Reseller Links">📋 Links</button>
+                            <button type="button" class="reseller-mini-btn" onclick="toggleResellerClients('${r.code}')" title="View Referred Clients">👥 (${(r.clients || []).length})</button>
+                            <button type="button" class="reseller-mini-btn" onclick="deleteReseller('${r.code}')" title="Remove Reseller" style="color: #dc2626;">🗑️</button>
+                        </td>
+                    </tr>
+                    <tr id="reseller-clients-row-${r.code}" style="display: none; background: #f8fafc;">
+                        <td colspan="10" style="padding: 10px 14px;">
+                            <div style="font-size: 11.5px; font-weight: 700; color: #334155; margin-bottom: 6px;">Referred Clients for ${r.name} (<code>${r.code}</code>) — ${month}</div>
+                            ${renderResellerClientList(r.clients || [])}
+                        </td>
+                    </tr>
+                `;
+            });
+            tbody.innerHTML = html;
+        }
+
+        function renderResellerClientList(clients) {
+            if (!clients || clients.length === 0) {
+                return `<div style="font-size: 11.5px; color: #64748b;">No referred clients yet.</div>`;
+            }
+            let rows = clients.map(cl => `
+                <tr>
+                    <td style="padding: 5px 8px;">${cl.email}</td>
+                    <td style="padding: 5px 8px; font-weight: 600;">${cl.tier}</td>
+                    <td style="padding: 5px 8px;">${cl.status}</td>
+                    <td style="padding: 5px 8px;">${cl.joinedAt ? new Date(cl.joinedAt).toLocaleDateString() : '-'}</td>
+                    <td style="padding: 5px 8px; text-align: right;">$${Number(cl.revenueMonth || 0).toFixed(2)}</td>
+                    <td style="padding: 5px 8px; text-align: right; font-weight: 600; color: #059669;">$${Number(cl.commissionMonth || 0).toFixed(2)}</td>
+                </tr>
+            `).join('');
+            return `
+                <table style="width: 100%; border-collapse: collapse; font-size: 11.5px; background: #fff; border: 1px solid #e2e8f0; border-radius: 6px;">
+                    <thead>
+                        <tr style="background: #f1f5f9;">
+                            <th style="padding: 5px 8px;">Client Email</th>
+                            <th style="padding: 5px 8px;">License Tier</th>
+                            <th style="padding: 5px 8px;">Status</th>
+                            <th style="padding: 5px 8px;">Joined</th>
+                            <th style="padding: 5px 8px; text-align: right;">Paid This Month</th>
+                            <th style="padding: 5px 8px; text-align: right;">Commission</th>
+                        </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            `;
+        }
+
+        function toggleResellerClients(code) {
+            const row = document.getElementById(`reseller-clients-row-${code}`);
+            if (row) {
+                row.style.display = row.style.display === 'none' ? 'table-row' : 'none';
+            }
+        }
+
+        async function saveReseller() {
+            const nameEl = document.getElementById('reseller-name-input');
+            const codeEl = document.getElementById('reseller-code-input');
+            const emailEl = document.getElementById('reseller-email-input');
+            const rateEl = document.getElementById('reseller-rate-input');
+
+            const name = nameEl.value.trim();
+            const code = codeEl.value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '');
+            const email = emailEl.value.trim();
+            const commissionRate = Number(rateEl.value) || 20;
+
+            if (!name || !code) {
+                alert("Please enter both a Reseller Name and a Reseller Code (e.g. jdoe).");
+                return;
+            }
+
+            try {
+                await callResellerAdminApi({
+                    action: 'reseller_save',
+                    name,
+                    code,
+                    email,
+                    commissionRate
+                });
+                nameEl.value = '';
+                codeEl.value = '';
+                emailEl.value = '';
+                rateEl.value = '20';
+                await loadResellerReport();
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        async function deleteReseller(code) {
+            if (!confirm(`Remove reseller '${code}' from the roster?`)) return;
+            try {
+                await callResellerAdminApi({ action: 'reseller_delete', code });
+                await loadResellerReport();
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        async function toggleResellerPaid(code) {
+            const monthPicker = document.getElementById('reseller-month-picker');
+            const month = monthPicker ? monthPicker.value : '';
+            try {
+                await callResellerAdminApi({ action: 'reseller_toggle_paid', code, month });
+                await loadResellerReport();
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        async function assignClientToReseller() {
+            const emailEl = document.getElementById('assign-client-email');
+            const codeEl = document.getElementById('assign-client-code');
+            const clientEmail = emailEl.value.trim();
+            const code = codeEl.value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '');
+            if (!clientEmail) {
+                alert("Please enter the client's email address.");
+                return;
+            }
+            try {
+                await callResellerAdminApi({ action: 'reseller_assign_client', clientEmail, code });
+                emailEl.value = '';
+                codeEl.value = '';
+                await loadResellerReport();
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        function copyResellerLinks(code, name) {
+            const kit = [
+                `Foresight Studio Referral Links for ${name} (${code}):`,
+                ``,
+                `1. Main Website & 7-Day Free Trial Link (Recommended):`,
+                `   https://foresightstudio.io/?ref=${code}`,
+                ``,
+                `2. Direct Account Portal Sign-Up Link:`,
+                `   https://foresightstudio.io/dashboard?mode=signup&ref=${code}`,
+                ``,
+                `3. Direct Plan Checkout Links:`,
+                `   - Analyst ($79.99/mo): https://buy.stripe.com/eVqaEQ8pgafFfwJ8678g005?client_reference_id=${code}`,
+                `   - Pro ($99.99/mo): https://buy.stripe.com/7sY9AMaxo4VlfwJ9ab8g006?client_reference_id=${code}`,
+                `   - Strategic Analysis Lab ($299.99/mo): https://buy.stripe.com/14A9AM7lc4Vl98l3PR8g007?client_reference_id=${code}`
+            ].join('\n');
+
+            navigator.clipboard.writeText(kit).then(() => {
+                alert(`Copied referral link kit for ${name} (${code}) to clipboard!`);
+            });
+        }
+
+        function exportResellerCsv() {
+            if (!lastResellerReport || !Array.isArray(lastResellerReport.resellers)) {
+                alert("No reseller report loaded yet.");
+                return;
+            }
+            const month = lastResellerReport.month || '';
+            const rows = [
+                ['Month', 'Reseller Name', 'Reseller Code', 'Commission %', 'Trials', 'Analyst ($79.99)', 'Pro ($99.99)', 'Strategic Analysis Lab ($299.99)', 'Total Paid Clients', 'Gross Revenue (Mo)', 'Commission Owed (Mo)', 'Payout Status']
+            ];
+            lastResellerReport.resellers.forEach(r => {
+                const c = r.counts || { trials: 0, analyst: 0, pro: 0, lab: 0, totalPaid: 0 };
+                rows.push([
+                    month,
+                    `"${String(r.name || '').replace(/"/g, '""')}"`,
+                    r.code,
+                    `${r.commissionRate || 20}%`,
+                    c.trials,
+                    c.analyst,
+                    c.pro,
+                    c.lab,
+                    c.totalPaid,
+                    Number(r.revenueMonth || 0).toFixed(2),
+                    Number(r.commissionMonth || 0).toFixed(2),
+                    r.paid ? 'Paid' : 'Unpaid'
+                ]);
+            });
+            const csvContent = rows.map(r => r.join(',')).join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `foresight-reseller-commissions-${month || 'report'}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         }
     </script>
 </body>

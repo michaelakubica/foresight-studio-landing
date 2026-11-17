@@ -447,7 +447,7 @@
                                     <span class="pricing-amount">$79.99</span>
                                     <span class="pricing-period">/ month</span>
                                 </div>
-                                <button type="button" class="btn btn-pricing-secondary" onclick="if(window.posthog)posthog.capture('clicked_subscribe', { tier: 'Analyst', price: 79.99 }); window.location.href='https://buy.stripe.com/eVqaEQ8pgafFfwJ8678g005';">Subscribe</button>
+                                <button type="button" class="btn btn-pricing-secondary" onclick="openStripeCheckout('https://buy.stripe.com/eVqaEQ8pgafFfwJ8678g005', 'Analyst', 79.99)">Subscribe</button>
                             </th>
                             <!-- 2. Pro Column (Most Popular) -->
                             <th class="pricing-tier-col-header pricing-col-popular">
@@ -458,7 +458,7 @@
                                     <span class="pricing-amount">$99.99</span>
                                     <span class="pricing-period">/ month</span>
                                 </div>
-                                <button type="button" class="btn btn-pricing-primary" onclick="if(window.posthog)posthog.capture('clicked_subscribe', { tier: 'Pro', price: 99.99 }); window.location.href='https://buy.stripe.com/7sY9AMaxo4VlfwJ9ab8g006';">Subscribe</button>
+                                <button type="button" class="btn btn-pricing-primary" onclick="openStripeCheckout('https://buy.stripe.com/7sY9AMaxo4VlfwJ9ab8g006', 'Pro', 99.99)">Subscribe</button>
                             </th>
                             <!-- 3. Strategic Analysis Lab Column -->
                             <th class="pricing-tier-col-header pricing-col-lab">
@@ -469,7 +469,7 @@
                                     <span class="pricing-amount">$299.99</span>
                                     <span class="pricing-period">/ month</span>
                                 </div>
-                                <button type="button" class="btn btn-pricing-lab" onclick="if(window.posthog)posthog.capture('clicked_subscribe', { tier: 'Strategic Analysis Lab', price: 299.99 }); window.location.href='https://buy.stripe.com/14A9AM7lc4Vl98l3PR8g007';">Subscribe</button>
+                                <button type="button" class="btn btn-pricing-lab" onclick="openStripeCheckout('https://buy.stripe.com/14A9AM7lc4Vl98l3PR8g007', 'Strategic Analysis Lab', 299.99)">Subscribe</button>
                             </th>
                         </tr>
                     </thead>
@@ -651,6 +651,58 @@
     </footer>
 
     <script>
+        function getStoredReferrer() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const urlRef = params.get('ref') || params.get('referrer') || params.get('client_reference_id');
+                if (urlRef) {
+                    const cleanRef = String(urlRef).trim().toLowerCase().replace(/[^a-z0-9_-]/g, '');
+                    if (cleanRef) {
+                        localStorage.setItem('foresight_referrer', cleanRef);
+                        document.cookie = `foresight_referrer=${encodeURIComponent(cleanRef)}; path=/; max-age=7776000; SameSite=Lax`;
+                        params.delete('ref');
+                        params.delete('referrer');
+                        const nextQuery = params.toString();
+                        const cleanUrl = window.location.pathname + (nextQuery ? `?${nextQuery}` : '') + window.location.hash;
+                        history.replaceState(null, null, cleanUrl);
+                        return cleanRef;
+                    }
+                }
+                const stored = localStorage.getItem('foresight_referrer');
+                if (stored) return stored;
+                const cookieMatch = document.cookie.match(/(?:^|;\s*)foresight_referrer=([^;]+)/);
+                return cookieMatch ? decodeURIComponent(cookieMatch[1]) : null;
+            } catch (_) {
+                return null;
+            }
+        }
+
+        function openStripeCheckout(baseUrl, tier, price) {
+            const ref = getStoredReferrer();
+            if (window.posthog) {
+                posthog.capture('clicked_subscribe', { tier, price, referrer: ref || null });
+            }
+            const sep = baseUrl.includes('?') ? '&' : '?';
+            const finalUrl = ref
+                ? `${baseUrl}${sep}client_reference_id=${encodeURIComponent(ref)}`
+                : baseUrl;
+            window.location.href = finalUrl;
+        }
+
+        // Capture referrer on load and decorate /dashboard links if present
+        document.addEventListener('DOMContentLoaded', () => {
+            const ref = getStoredReferrer();
+            if (ref) {
+                document.querySelectorAll('a[href^="/dashboard"]').forEach(a => {
+                    const href = a.getAttribute('href');
+                    if (href && !href.includes('ref=')) {
+                        const sep = href.includes('?') ? '&' : '?';
+                        a.setAttribute('href', `${href}${sep}ref=${encodeURIComponent(ref)}`);
+                    }
+                });
+            }
+        });
+
         // Force page to load at the top and clear URL hash on reload/refresh
         window.addEventListener('load', () => {
             const navEntries = performance.getEntriesByType('navigation');

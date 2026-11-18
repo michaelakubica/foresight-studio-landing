@@ -611,8 +611,75 @@
                     ℹ️ <strong>Next Steps:</strong> Download and run the installer for your computer. Your <strong>7-day free trial of Strategic Analysis Lab</strong> activates automatically on first launch (no license key required). If you have purchased a subscription, copy your license key above and activate it from the top bar of the app.
                 </div>
 
+                <!-- Customer Purchased Models & Storefront Card -->
+                <div id="customer-store-box" style="margin-top: 18px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px 16px; text-align: left;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <div>
+                            <div style="font-size: 14px; font-weight: 700; color: #0f172a;">🛒 Pre-Built Industry Models</div>
+                            <div style="font-size: 11.5px; color: #64748b;">Download your purchased models or browse the storefront</div>
+                        </div>
+                        <a href="/models" style="font-size: 12px; font-weight: 600; color: #2563eb; text-decoration: none;">View All Models &rarr;</a>
+                    </div>
+                    <div id="customer-store-list" style="display: flex; flex-direction: column; gap: 8px;">
+                        <div style="font-size: 12px; color: #64748b;">Loading model catalog...</div>
+                    </div>
+                </div>
+
                 <!-- Admin-Only Reseller & Commission Management Panel -->
                 <div id="reseller-admin-card" class="reseller-admin-card">
+                    <!-- Admin Storefront Publisher Section -->
+                    <div style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 2px solid #e2e8f0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <div>
+                                <div style="font-size: 15px; font-weight: 700; color: #0f172a;">🏪 Premium Model Storefront Publisher (Admin)</div>
+                                <div style="font-size: 12px; color: #64748b;">Upload a .json model workbook, attach an optional Live Dashboard .html preview, and set its price.</div>
+                            </div>
+                        </div>
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px;">
+                            <div style="display: grid; grid-template-columns: 1.5fr 1fr 0.7fr 1.2fr; gap: 8px;">
+                                <input type="text" id="store-model-title" placeholder="Model Title (e.g. MedTech Capital + Disposables)" style="padding: 7px 10px; font-size: 12px;">
+                                <select id="store-model-category" style="padding: 7px 10px; font-size: 12px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff;">
+                                    <option value="MedTech & Diagnostics">MedTech &amp; Diagnostics</option>
+                                    <option value="Biopharma & Oncology">Biopharma &amp; Oncology</option>
+                                    <option value="Market Access & Pricing">Market Access &amp; Pricing</option>
+                                    <option value="Decision Analysis & rNPV">Decision Analysis &amp; rNPV</option>
+                                </select>
+                                <input type="number" id="store-model-price" value="199" min="1" step="1" placeholder="Price ($)" title="Price in USD" style="padding: 7px 10px; font-size: 12px;">
+                                <input type="text" id="store-model-tags" placeholder="Tags (e.g. 510k, Capital, DCF)" style="padding: 7px 10px; font-size: 12px;">
+                            </div>
+                            <input type="text" id="store-model-desc" placeholder="Short description of model architecture, key assumptions, and outputs..." style="padding: 7px 10px; font-size: 12px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 2px;">
+                                <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 11.5px; color: #334155;">
+                                    <label style="margin: 0; display: inline-flex; align-items: center; gap: 6px; color: #334155; font-weight: 600;">
+                                        <span>📦 Model (.json):</span>
+                                        <input type="file" id="store-model-json-file" accept=".json" style="width: auto; padding: 3px; font-size: 11px;">
+                                    </label>
+                                    <label style="margin: 0; display: inline-flex; align-items: center; gap: 6px; color: #334155; font-weight: 600;">
+                                        <span>🔍 Live Dashboard Preview (.html, optional):</span>
+                                        <input type="file" id="store-model-preview-file" accept=".html,.htm" style="width: auto; padding: 3px; font-size: 11px;">
+                                    </label>
+                                </div>
+                                <button type="button" id="publish-store-model-btn" class="btn btn-primary" onclick="publishStoreModel()" style="width: auto; padding: 8px 16px; font-size: 12px;">🚀 Publish to Storefront</button>
+                            </div>
+                        </div>
+                        <div class="reseller-table-wrap" style="margin-top: 10px;">
+                            <table class="reseller-table">
+                                <thead>
+                                    <tr>
+                                        <th>Model Title</th>
+                                        <th>Category</th>
+                                        <th style="text-align: center;">Nodes</th>
+                                        <th style="text-align: center;">Live Preview</th>
+                                        <th style="text-align: right;">Price</th>
+                                        <th style="text-align: right;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-store-table-body">
+                                    <tr><td colspan="6" style="text-align: center; color: #64748b; padding: 12px;">No storefront models published yet.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
                         <div>
                             <div style="font-size: 15px; font-weight: 700; color: #0f172a;">🤝 Reseller &amp; Commission Management (Admin)</div>
@@ -728,6 +795,14 @@
             });
         }
 
+        function getDashboardRedirectUrl() {
+            const origin = window.location.origin || '';
+            if (!origin || origin.includes('localhost') || origin.includes('127.0.0.1') || origin.startsWith('file:')) {
+                return 'https://foresightstudio.io/dashboard';
+            }
+            return origin + '/dashboard';
+        }
+
         // Check authentication state on page load
         document.addEventListener('DOMContentLoaded', async () => {
             getStoredReferrer();
@@ -738,21 +813,40 @@
             }
 
             const params = new URLSearchParams(window.location.search);
-            if (params.get('mode') === 'signup') {
+            const hashStr = window.location.hash || '';
+            const isRecoveryRedirect = hashStr.includes('type=recovery') || params.get('type') === 'recovery';
+
+            if (isRecoveryRedirect) {
+                showNewPasswordMode();
+            } else if (params.get('mode') === 'signup') {
                 toggleAuthMode();
             }
 
-            const { data: { session } } = await supabaseClient.auth.getSession();
-            updateUI(session);
-
-            // Listen for auth changes
+            // Listen for auth changes before getSession so PASSWORD_RECOVERY events are never missed
             supabaseClient.auth.onAuthStateChange((event, session) => {
-                if (event === 'PASSWORD_RECOVERY') {
+                if (event === 'PASSWORD_RECOVERY' || isNewPasswordMode) {
                     showNewPasswordMode();
                 } else {
                     updateUI(session);
                 }
             });
+
+            // Support token_hash recovery links if present in query params
+            const tokenHash = params.get('token_hash');
+            if (tokenHash && params.get('type') === 'recovery') {
+                try {
+                    await supabaseClient.auth.verifyOtp({ token_hash: tokenHash, type: 'recovery' });
+                    showNewPasswordMode();
+                    return;
+                } catch (e) {
+                    console.warn('OTP recovery verification error:', e);
+                }
+            }
+
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (!isNewPasswordMode) {
+                updateUI(session);
+            }
         });
 
         function updateUI(session) {
@@ -785,6 +879,7 @@
                 loggedInStateDiv.style.display = 'block';
                 userEmailBadge.textContent = session.user.email;
                 loadSubscriptionDetails(session);
+                loadStoreCatalogDashboard(session);
                 prefetchDownloadUrl(session);
             } else {
                 if (adminCard) adminCard.style.display = 'none';
@@ -949,6 +1044,11 @@
                     if (error) throw error;
                     
                     isNewPasswordMode = false;
+                    try {
+                        if (window.location.hash && window.location.hash.includes('type=recovery')) {
+                            history.replaceState(null, null, window.location.pathname + window.location.search);
+                        }
+                    } catch (_) {}
                     const passwordGroup = document.getElementById('password-group');
                     const emailGroup = document.getElementById('email-group');
                     emailGroup.style.display = 'block';
@@ -964,7 +1064,7 @@
 
                 } else if (isRecoveryMode) {
                     const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-                        redirectTo: window.location.origin + '/dashboard'
+                        redirectTo: getDashboardRedirectUrl()
                     });
 
                     if (error) throw error;
@@ -977,7 +1077,10 @@
                     const { data, error } = await supabaseClient.auth.signUp({
                         email,
                         password,
-                        options: refCode ? { data: { referrer_code: refCode } } : undefined
+                        options: {
+                            emailRedirectTo: getDashboardRedirectUrl(),
+                            ...(refCode ? { data: { referrer_code: refCode } } : {})
+                        }
                     });
 
                     if (error) throw error;
@@ -1627,6 +1730,227 @@
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
+        }
+
+        // -----------------------------------------------------------------
+        // Premium Model Storefront & Admin Publisher Functions
+        // -----------------------------------------------------------------
+        function readFileAsText(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(String(reader.result || ''));
+                reader.onerror = () => reject(new Error('Failed to read file'));
+                reader.readAsText(file);
+            });
+        }
+
+        async function loadStoreCatalogDashboard(session = null) {
+            const customerListEl = document.getElementById('customer-store-list');
+            const adminTbodyEl = document.getElementById('admin-store-table-body');
+            if (!session) {
+                const s = await supabaseClient.auth.getSession();
+                session = s && s.data ? s.data.session : null;
+            }
+            if (!session) return;
+
+            try {
+                const res = await fetch(`${SUPABASE_URL}/functions/v1/customer-portal`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${session.access_token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ action: 'store_catalog' })
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || "Failed to load model catalog");
+
+                const models = Array.isArray(data.models) ? data.models : [];
+                const ownedSet = new Set(Array.isArray(data.ownedModelIds) ? data.ownedModelIds : []);
+
+                // Render Customer Storefront & Owned Models Box
+                if (customerListEl) {
+                    if (models.length === 0) {
+                        customerListEl.innerHTML = `<div style="font-size: 12px; color: #64748b;">New pre-built industry models coming soon.</div>`;
+                    } else {
+                        customerListEl.innerHTML = models.map(m => {
+                            const isOwned = ownedSet.has(m.id);
+                            const previewBtn = m.hasPreviewHtml
+                                ? `<button type="button" class="reseller-mini-btn" onclick="openLiveDashboardPreview('${m.id}', '${String(m.title || '').replace(/'/g, "\\'")}')">🔍 Live Preview</button>`
+                                : '';
+                            const actionBtn = isOwned
+                                ? `<button type="button" class="reseller-mini-btn" style="background:#dcfce7; border-color:#86efac; color:#166534;" onclick="downloadStoreModel('${m.id}')">⬇️ Download (.json)</button>`
+                                : `<button type="button" class="reseller-mini-btn" style="background:#eff6ff; border-color:#2563eb; color:#1d4ed8;" onclick="buyStoreModel('${m.id}')">💳 Buy ($${Number(m.price || 0).toFixed(0)})</button>`;
+
+                            return `
+                                <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px;">
+                                    <div style="min-width: 0; flex: 1;">
+                                        <div style="font-size: 12.5px; font-weight: 700; color: #0f172a;">${m.title}</div>
+                                        <div style="font-size: 11px; color: #64748b;">${m.category} &bull; ${m.nodeCount || 0} nodes ${isOwned ? '&bull; <strong style="color:#059669;">✓ Owned</strong>' : ''}</div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
+                                        ${previewBtn}
+                                        ${actionBtn}
+                                    </div>
+                                </div>
+                            `;
+                        }).join('');
+                    }
+                }
+
+                // Render Admin Storefront Table
+                if (adminTbodyEl && data.isAdmin) {
+                    if (models.length === 0) {
+                        adminTbodyEl.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #64748b; padding: 12px;">No storefront models published yet. Upload a .json file above to publish your first model.</td></tr>`;
+                    } else {
+                        adminTbodyEl.innerHTML = models.map(m => `
+                            <tr>
+                                <td>
+                                    <div style="font-weight: 700; color: #0f172a;">${m.title}</div>
+                                    <div style="font-size: 11px; color: #64748b;"><code>${m.id}</code></div>
+                                </td>
+                                <td>${m.category}</td>
+                                <td style="text-align: center; font-weight: 600;">${m.nodeCount || 0}</td>
+                                <td style="text-align: center;">
+                                    ${m.hasPreviewHtml ? `<button type="button" class="reseller-mini-btn" onclick="openLiveDashboardPreview('${m.id}', '${String(m.title || '').replace(/'/g, "\\'")}')">🔍 Preview</button>` : '<span style="color:#94a3b8;">—</span>'}
+                                </td>
+                                <td style="text-align: right; font-weight: 700; color: #059669;">$${Number(m.price || 0).toFixed(2)}</td>
+                                <td style="text-align: right; white-space: nowrap;">
+                                    <button type="button" class="reseller-mini-btn" onclick="downloadStoreModel('${m.id}')" title="Download .json">⬇️ JSON</button>
+                                    <button type="button" class="reseller-mini-btn" onclick="deleteStoreModel('${m.id}')" title="Remove from Storefront" style="color: #dc2626;">🗑️</button>
+                                </td>
+                            </tr>
+                        `).join('');
+                    }
+                }
+            } catch (err) {
+                console.warn("Could not load storefront catalog:", err.message);
+            }
+        }
+
+        async function publishStoreModel() {
+            const titleEl = document.getElementById('store-model-title');
+            const catEl = document.getElementById('store-model-category');
+            const priceEl = document.getElementById('store-model-price');
+            const tagsEl = document.getElementById('store-model-tags');
+            const descEl = document.getElementById('store-model-desc');
+            const jsonFileEl = document.getElementById('store-model-json-file');
+            const previewFileEl = document.getElementById('store-model-preview-file');
+            const btn = document.getElementById('publish-store-model-btn');
+
+            const title = titleEl.value.trim();
+            if (!title) {
+                alert("Please enter a Model Title.");
+                return;
+            }
+            if (!jsonFileEl.files || !jsonFileEl.files[0]) {
+                alert("Please select a .json model file to upload.");
+                return;
+            }
+
+            const origText = btn.textContent;
+            btn.disabled = true;
+            btn.innerHTML = `<span class="loading-spinner"></span>Publishing...`;
+
+            try {
+                const modelJson = await readFileAsText(jsonFileEl.files[0]);
+                let previewHtml = null;
+                if (previewFileEl.files && previewFileEl.files[0]) {
+                    previewHtml = await readFileAsText(previewFileEl.files[0]);
+                }
+
+                await callResellerAdminApi({
+                    action: 'store_admin_publish',
+                    title,
+                    category: catEl.value,
+                    price: Number(priceEl.value) || 199,
+                    tags: tagsEl.value,
+                    description: descEl.value.trim(),
+                    modelJson,
+                    previewHtml
+                });
+
+                titleEl.value = '';
+                tagsEl.value = '';
+                descEl.value = '';
+                jsonFileEl.value = '';
+                previewFileEl.value = '';
+                await loadStoreCatalogDashboard();
+                alert(`Published "${title}" to the Foresight Studio Model Storefront!`);
+            } catch (err) {
+                alert(err.message);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = origText;
+            }
+        }
+
+        async function deleteStoreModel(id) {
+            if (!confirm(`Remove model '${id}' from the storefront catalog?`)) return;
+            try {
+                await callResellerAdminApi({ action: 'store_admin_delete', id });
+                await loadStoreCatalogDashboard();
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        async function buyStoreModel(modelId) {
+            try {
+                const { data: { session } } = await supabaseClient.auth.getSession();
+                const headers = { 'Content-Type': 'application/json' };
+                if (session && session.access_token) {
+                    headers['Authorization'] = `Bearer ${session.access_token}`;
+                }
+                const res = await fetch(`${SUPABASE_URL}/functions/v1/customer-portal`, {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify({
+                        action: 'store_checkout',
+                        modelId,
+                        referrerCode: getStoredReferrer() || null,
+                        returnUrl: window.location.href
+                    })
+                });
+                const data = await res.json();
+                if (res.ok && data.url) {
+                    window.location.href = data.url;
+                } else {
+                    alert(data.error || "Could not start checkout.");
+                }
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        async function downloadStoreModel(modelId) {
+            try {
+                const data = await callResellerAdminApi({ action: 'store_download', modelId });
+                if (data && data.downloadUrl) {
+                    startBrowserDownload(data.downloadUrl);
+                }
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        async function openLiveDashboardPreview(modelId, title) {
+            try {
+                const res = await fetch(`${SUPABASE_URL}/functions/v1/customer-portal`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'store_preview_url', modelId })
+                });
+                const data = await res.json();
+                if (!res.ok || !data.previewHtml) {
+                    throw new Error(data.error || "Live preview unavailable.");
+                }
+                const blob = new Blob([data.previewHtml], { type: 'text/html;charset=utf-8' });
+                const blobUrl = URL.createObjectURL(blob);
+                window.open(blobUrl, '_blank');
+            } catch (err) {
+                alert(err.message);
+            }
         }
     </script>
 </body>

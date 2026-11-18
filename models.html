@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foresight Studio — Pre-Built BioPharma, MedTech &amp; Diagnostics Forecast Model Store</title>
+    <meta name="description" content="Browse and purchase ready-to-use, institutional-grade BioPharma, Medical Device, Diagnostics, and rNPV Decision Analysis forecast models for Foresight Studio.">
+    <link rel="icon" type="image/png" href="assets/FSFavicon.png">
+    <link rel="stylesheet" href="style.css?v=7">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body {
+            background: #f8fafc;
+            color: #0f172a;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+        }
+        .store-hero {
+            padding: 130px 20px 44px;
+            text-align: center;
+            background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .store-hero h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 12px;
+            letter-spacing: -0.02em;
+        }
+        .store-hero p {
+            max-width: 680px;
+            margin: 0 auto 24px;
+            color: #475569;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .store-controls {
+            max-width: 1120px;
+            margin: 24px auto 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .store-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .store-pill {
+            padding: 7px 14px;
+            border-radius: 999px;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            color: #334155;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .store-pill.active, .store-pill:hover {
+            background: #2563eb;
+            color: #ffffff;
+            border-color: #2563eb;
+        }
+        .store-search {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            font-size: 13.5px;
+            min-width: 240px;
+            background: #ffffff;
+        }
+        .store-grid {
+            max-width: 1120px;
+            margin: 32px auto 80px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 22px;
+        }
+        .store-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .store-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+        }
+        .store-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .store-cat-badge {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: #eff6ff;
+            color: #1d4ed8;
+        }
+        .store-nodes-badge {
+            font-size: 11.5px;
+            font-weight: 600;
+            color: #64748b;
+        }
+        .store-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0 0 8px;
+        }
+        .store-card-desc {
+            font-size: 13.5px;
+            color: #475569;
+            line-height: 1.55;
+            margin: 0 0 14px;
+        }
+        .store-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+        .store-tag {
+            font-size: 11px;
+            font-weight: 600;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+        .store-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 14px;
+            border-top: 1px solid #f1f5f9;
+            gap: 10px;
+        }
+        .store-price {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0f172a;
+        }
+        .store-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .store-btn {
+            padding: 9px 14px;
+            border-radius: 8px;
+            font-size: 12.5px;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid transparent;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .store-btn-preview {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            color: #334155;
+        }
+        .store-btn-preview:hover {
+            background: #f1f5f9;
+        }
+        .store-btn-buy {
+            background: #2563eb;
+            color: #ffffff;
+        }
+        .store-btn-buy:hover {
+            background: #1d4ed8;
+        }
+        .store-btn-owned {
+            background: #dcfce7;
+            border-color: #86efac;
+            color: #166534;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo-link">
+                <img src="assets/FSLogo.png" alt="Foresight Studio Logo" class="nav-logo" width="1982" height="296">
+            </a>
+            <nav class="nav-menu">
+                <a href="/#features">Features</a>
+                <a href="/#solutions">Solutions</a>
+                <a href="/preview.html">Live Model &amp; Dashboard</a>
+                <a href="/models" style="color: #2563eb; font-weight: 700;">Model Store</a>
+                <a href="/#pricing">Pricing</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="/dashboard" class="btn btn-secondary">Account Portal</a>
+                <a href="/dashboard?mode=signup" class="btn btn-primary">Start Free Trial</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="store-hero">
+        <h1>Pre-Built Industry Model Marketplace</h1>
+        <p>Accelerate your commercial and clinical valuations with institutional-grade, ready-to-customize Foresight Studio models—complete with driver trees, Monte Carlo risk envelopes, and Executive Dashboards.</p>
+        <div class="store-controls">
+            <div class="store-pills" id="store-category-pills">
+                <button type="button" class="store-pill active" onclick="setCategoryFilter('All', this)">All Models</button>
+                <button type="button" class="store-pill" onclick="setCategoryFilter('MedTech & Diagnostics', this)">MedTech &amp; Diagnostics</button>
+                <button type="button" class="store-pill" onclick="setCategoryFilter('Biopharma & Oncology', this)">Biopharma &amp; Oncology</button>
+                <button type="button" class="store-pill" onclick="setCategoryFilter('Market Access & Pricing', this)">Market Access &amp; Pricing</button>
+                <button type="button" class="store-pill" onclick="setCategoryFilter('Decision Analysis & rNPV', this)">Decision Analysis &amp; rNPV</button>
+            </div>
+            <input type="search" id="store-search-input" class="store-search" placeholder="Search models or tags..." oninput="renderStoreGrid()">
+        </div>
+    </section>
+
+    <main>
+        <div id="store-grid" class="store-grid">
+            <div style="grid-column: 1 / -1; text-align: center; padding: 48px; color: #64748b;">Loading pre-built models...</div>
+        </div>
+    </main>
+
+    <script>
+        const SUPABASE_URL = "https://fqotelinvdyxcsignyqo.supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_xcZfgosaWnwDBNQIDarNJA_WQRV6VL8";
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        let allModels = [];
+        let ownedModelIds = new Set();
+        let activeCategory = 'All';
+
+        function getStoredReferrer() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const urlRef = params.get('ref') || params.get('referrer') || params.get('client_reference_id');
+                if (urlRef) {
+                    const cleanRef = String(urlRef).trim().toLowerCase().replace(/[^a-z0-9_-]/g, '');
+                    if (cleanRef) {
+                        localStorage.setItem('foresight_referrer', cleanRef);
+                        document.cookie = `foresight_referrer=${encodeURIComponent(cleanRef)}; path=/; max-age=7776000; SameSite=Lax`;
+                        return cleanRef;
+                    }
+                }
+                return localStorage.getItem('foresight_referrer') || null;
+            } catch (_) {
+                return null;
+            }
+        }
+
+        function setCategoryFilter(cat, btnEl) {
+            activeCategory = cat;
+            document.querySelectorAll('#store-category-pills .store-pill').forEach(b => b.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+            renderStoreGrid();
+        }
+
+        function renderStoreGrid() {
+            const grid = document.getElementById('store-grid');
+            const query = (document.getElementById('store-search-input')?.value || '').trim().toLowerCase();
+
+            const filtered = allModels.filter(m => {
+                if (activeCategory !== 'All' && m.category !== activeCategory) return false;
+                if (!query) return true;
+                const hay = `${m.title} ${m.category} ${m.description} ${(m.tags || []).join(' ')}`.toLowerCase();
+                return hay.includes(query);
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 48px; color: #64748b; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;">No matching models found. Check back soon or contact us for custom model builds.</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(m => {
+                const isOwned = ownedModelIds.has(m.id);
+                const tagsHtml = (m.tags || []).map(t => `<span class="store-tag">${t}</span>`).join('');
+                const previewBtn = m.hasPreviewHtml
+                    ? `<button type="button" class="store-btn store-btn-preview" onclick="openLivePreview('${m.id}')">🔍 Live Dashboard</button>`
+                    : '';
+                const buyOrDownloadBtn = isOwned
+                    ? `<button type="button" class="store-btn store-btn-owned" onclick="downloadOwnedModel('${m.id}')">⬇️ Download (.json)</button>`
+                    : `<button type="button" class="store-btn store-btn-buy" onclick="purchaseModel('${m.id}')">Buy Model &rarr;</button>`;
+
+                return `
+                    <div class="store-card">
+                        <div>
+                            <div class="store-card-top">
+                                <span class="store-cat-badge">${m.category}</span>
+                                <span class="store-nodes-badge">🧩 ${m.nodeCount || 0} Nodes</span>
+                            </div>
+                            <h3 class="store-card-title">${m.title}</h3>
+                            <p class="store-card-desc">${m.description || ''}</p>
+                            <div class="store-tags">${tagsHtml}</div>
+                        </div>
+                        <div class="store-card-footer">
+                            <div class="store-price">${isOwned ? '<span style="color:#059669; font-size:15px;">✓ Owned</span>' : '$' + Number(m.price || 0).toFixed(0)}</div>
+                            <div class="store-actions">
+                                ${previewBtn}
+                                ${buyOrDownloadBtn}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function initStorefront() {
+            getStoredReferrer();
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            const headers = { 'Content-Type': 'application/json' };
+            if (session && session.access_token) {
+                headers['Authorization'] = `Bearer ${session.access_token}`;
+            }
+
+            try {
+                const res = await fetch(`${SUPABASE_URL}/functions/v1/customer-portal`, {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify({ action: 'store_catalog' })
+                });
+                const data = await res.json();
+                allModels = Array.isArray(data.models) ? data.models : [];
+                ownedModelIds = new Set(Array.isArray(data.ownedModelIds) ? data.ownedModelIds : []);
+                renderStoreGrid();
+            } catch (err) {
+                console.error("Failed to load storefront catalog:", err);
+                renderStoreGrid();
+            }
+        }
+
+        async function purchaseModel(modelId) {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            const headers = { 'Content-Type': 'application/json' };
+            if (session && session.access_token) {
+                headers['Authorization'] = `Bearer ${session.access_token}`;
+            }
+            try {
+                const res = await fetch(`${SUPABASE_URL}/functions/v1/customer-portal`, {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify({
+                        action: 'store_checkout',
+                        modelId,
+                        referrerCode: getStoredReferrer() || null,
+                        returnUrl: window.location.origin + '/dashboard'
+                    })
+                });
+                const data = await res.json();
+                if (res.ok && data.url) {
+                    window.location.href = data.url;
+                } else {
+                    alert(data.error || "Unable to start checkout.");
+                }
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        async function downloadOwnedModel(modelId) {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (!session) {
+                window.location.href = '/dashboard';
+                return;
+            }
+            try {
+                const res = await fetch(`${SUPABASE_URL}/functions/v1/customer-portal`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${session.access_token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ action: 'store_download', modelId })
+                });
+                const data = await res.json();
+                if (res.ok && data.downloadUrl) {
+                    window.location.href = data.downloadUrl;
+                } else {
+                    alert(data.error || "Unable to download model.");
+                }
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        async function openLivePreview(modelId) {
+            try {
+                const res = await fetch(`${SUPABASE_URL}/functions/v1/customer-portal`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'store_preview_url', modelId })
+                });
+                const data = await res.json();
+                if (!res.ok || !data.previewHtml) {
+                    throw new Error(data.error || "Live preview unavailable.");
+                }
+                const blob = new Blob([data.previewHtml], { type: 'text/html;charset=utf-8' });
+                const blobUrl = URL.createObjectURL(blob);
+                window.open(blobUrl, '_blank');
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initStorefront);
+    </script>
+</body>
+</html>

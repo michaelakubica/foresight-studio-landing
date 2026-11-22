@@ -547,7 +547,10 @@
                                 <button class="btn-copy-key" id="copy-key-btn" onclick="copyLicenseKey()" title="Copy Key">📋 Copy</button>
                             </span>
                         </div>
-                        <div class="subscription-row" id="subscription-period-row" style="display: none;">
+                        <div id="license-key-activation-hint" style="margin-top: 10px; padding: 10px 12px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; font-size: 12px; color: #1e40af; line-height: 1.45;">
+                            💡 <strong>Where to enter this key:</strong> Click <strong>📋 Copy</strong> above. Then open the <strong>Foresight Studio desktop app</strong> on your Mac or Windows PC, click the <strong>Trial</strong> badge (or click <strong>ℹ️ About &gt; Enter License Key</strong>) in the top toolbar, paste your key, and click <strong>Activate</strong>.
+                        </div>
+                        <div class="subscription-row" id="subscription-period-row" style="display: none; margin-top: 10px;">
                             <span class="subscription-label">Billing Cycle End:</span>
                             <span class="subscription-value" id="subscription-period-text"></span>
                         </div>
@@ -582,7 +585,7 @@
 
                 <div class="download-box">
                     <div class="download-title">📥 Foresight Studio Desktop App</div>
-                    <div class="download-meta">Version 1.3.53 (Production Release)</div>
+                    <div class="download-meta">Version 1.3.54 (Production Release)</div>
                     <div style="display: flex; gap: 10px; margin-top: 14px; margin-bottom: 8px;">
                         <button id="download-mac-btn" onclick="triggerDownload('mac')" class="btn btn-primary" style="flex: 1; padding: 12px 10px; font-weight: 600;">
                             🍏 Download for Mac (.dmg)

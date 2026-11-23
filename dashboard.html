@@ -581,6 +581,17 @@
                             <span class="subscription-label">Billing Cycle End:</span>
                             <span class="subscription-value" id="subscription-period-text"></span>
                         </div>
+                        <div id="concierge-onboarding-box" style="display: none; margin-top: 14px; padding: 12px 14px; background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 100%); border: 1px solid #86efac; border-radius: 8px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+                                <div style="flex: 1; min-width: 210px;">
+                                    <div style="font-size: 13px; font-weight: 700; color: #065f46; margin-bottom: 3px;">🎁 Complimentary Concierge Onboarding Session</div>
+                                    <div style="font-size: 11.5px; color: #334155; line-height: 1.4;">Your subscription includes a personalized 1-on-1 onboarding session <strong style="color: #047857;">(a $500 value)</strong> to help you set up your workspace and build your first forecast model.</div>
+                                </div>
+                                <a href="https://calendly.com/michaelkubica/foresight-studio-concierge-onboarding-session" target="_blank" rel="noopener noreferrer" onclick="if(window.posthog)posthog.capture('clicked_concierge_onboarding', { location: 'dashboard' })" style="display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: #059669; color: #ffffff; text-decoration: none; padding: 9px 14px; border-radius: 6px; font-size: 12.5px; font-weight: 600; white-space: nowrap; box-shadow: 0 2px 4px rgba(5, 150, 105, 0.2); transition: background-color 0.15s ease;">
+                                    📅 Book Onboarding Session &rarr;
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <div class="subscription-actions" id="paid-subscription-actions">
                         <button id="manage-billing-btn" onclick="openBillingPortal()" class="btn btn-outline" title="Manage payment method, view invoices, or cancel plan">
@@ -1370,6 +1381,7 @@
                     }
 
                     const oneClickBtn = document.getElementById('one-click-activate-btn');
+                    const onboardingBox = document.getElementById('concierge-onboarding-box');
 
                     if (status === 'trial' || !data.licenseKey) {
                         badge.textContent = '7-Day Free Trial';
@@ -1378,6 +1390,7 @@
                         keyText.textContent = 'Auto-activates on first launch';
                         if (copyBtn) copyBtn.style.display = 'none';
                         if (oneClickBtn) oneClickBtn.style.display = 'none';
+                        if (onboardingBox) onboardingBox.style.display = 'none';
                         if (paidActions) paidActions.style.display = 'none';
                         if (trialOptions) trialOptions.style.display = 'block';
                         return;
@@ -1390,6 +1403,7 @@
                         oneClickBtn.href = `foresight://activate?key=${encodeURIComponent(data.licenseKey)}`;
                         oneClickBtn.style.display = 'inline-flex';
                     }
+                    if (onboardingBox) onboardingBox.style.display = 'block';
                     if (paidActions) paidActions.style.display = 'flex';
                     if (trialOptions) trialOptions.style.display = 'none';
 
@@ -1420,6 +1434,8 @@
                     if (copyBtn) copyBtn.style.display = 'none';
                     const fallbackOneClickBtn = document.getElementById('one-click-activate-btn');
                     if (fallbackOneClickBtn) fallbackOneClickBtn.style.display = 'none';
+                    const fallbackOnboardingBox = document.getElementById('concierge-onboarding-box');
+                    if (fallbackOnboardingBox) fallbackOnboardingBox.style.display = 'none';
                     if (paidActions) paidActions.style.display = 'none';
                     if (trialOptions) trialOptions.style.display = 'block';
                 }

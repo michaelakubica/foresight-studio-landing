@@ -152,6 +152,14 @@
             },
             {
               "@type": "Question",
+              "name": "Why can't we just use ChatGPT or Microsoft Copilot with Excel to build our forecasts and dashboards?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "General-purpose AI chatbots are probabilistic text generators—not validated mathematical engines. Using LLMs to write spreadsheet formulas or generate one-off HTML prototypes introduces silent formula errors, loses model state across sessions, requires redacting confidential clinical or net-pricing data before uploading to the cloud, and cannot reliably execute multi-iteration stochastic simulations. Foresight Studio provides a 100% deterministic, unit-tested calculation engine that runs locally on your machine—giving you instant one-click executive dynamic dashboards, Bass diffusion curves, Monte Carlo simulations (P10/P50/P90), tornado sensitivity charts, and time-aware clinical/regulatory Decision Trees (rNPV / eNPV) with full auditability and zero data leakage."
+              }
+            },
+            {
+              "@type": "Question",
               "name": "Can Foresight Studio calculate risk-adjusted NPV (rNPV / eNPV) and clinical or regulatory stage-gate probabilities?",
               "acceptedAnswer": {
                 "@type": "Answer",
@@ -596,6 +604,13 @@
                     <summary class="faq-question">Why do teams choose Foresight Studio for Strategic Analysis and Life Sciences Forecasting over Excel spreadsheets?</summary>
                     <div class="faq-answer">
                         <p>Traditional spreadsheets bury critical clinical and commercial logic across dozens of tabs and nested cell formulas, making strategic analysis fragile, slow to update, and difficult for leadership to audit. Foresight Studio replaces hidden cell references with a self-documenting visual driver tree where demographic cohorts, Bass diffusion launch curves, market share, pricing, P&amp;L, DCF, and Monte Carlo probability distributions are immediately visible and auditable—while still exporting clean, multi-tab Excel (<code>.xlsx</code>) reports with one click.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item" name="faq">
+                    <summary class="faq-question">Why can't we just use ChatGPT or Microsoft Copilot with Excel to build our forecasts and dashboards?</summary>
+                    <div class="faq-answer">
+                        <p>General-purpose AI chatbots are probabilistic text generators—not validated mathematical engines. Using LLMs to write spreadsheet formulas or generate one-off HTML prototypes introduces silent formula errors, loses model state across sessions, requires redacting confidential clinical or net-pricing data before uploading to the cloud, and cannot reliably execute multi-iteration stochastic simulations. Foresight Studio provides a <strong>100% deterministic, unit-tested calculation engine</strong> that runs locally on your machine—giving you instant <strong>one-click executive dynamic dashboards</strong>, <strong>Bass diffusion curves</strong>, <strong>Monte Carlo simulations (P10/P50/P90)</strong>, <strong>tornado sensitivity charts</strong>, and <strong>time-aware clinical/regulatory Decision Trees (rNPV / eNPV)</strong> with full auditability and zero data leakage.</p>
                     </div>
                 </details>
 

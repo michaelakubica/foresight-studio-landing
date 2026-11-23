@@ -960,6 +960,10 @@ p {
     border-top: 1px solid var(--border-color);
 }
 
+.faq-section .section-header {
+    max-width: 880px;
+}
+
 .faq-list {
     max-width: 880px;
     margin: 0 auto;

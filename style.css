@@ -446,9 +446,9 @@ p {
     object-fit: contain;
 }
 
-/* Core Premises Section */
-.premises-section {
-    padding: 100px 0;
+/* Problem -> Proof Contrast Section (Why Not Excel) */
+.contrast-section {
+    padding: 95px 0;
     background-color: var(--bg-primary);
     border-top: 1px solid var(--border-color);
 }
@@ -456,58 +456,120 @@ p {
 .section-header {
     text-align: center;
     max-width: 700px;
-    margin: 0 auto 60px auto;
+    margin: 0 auto 54px auto;
 }
 
 .section-header h2 {
     margin-bottom: 10px;
 }
 
-.premises-grid {
+.contrast-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
 }
 
-.premise-card {
-    background-color: var(--bg-secondary);
+.contrast-card {
+    border-radius: 12px;
+    padding: 34px 32px;
     border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 35px 25px;
-    text-align: center;
     box-shadow: var(--shadow-sm);
-    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.premise-card:hover {
-    transform: translateY(-4px);
+.contrast-card-legacy {
+    background-color: #fafafa;
+    border-top: 4px solid #dc2626;
+}
+
+.contrast-card-modern {
+    background: linear-gradient(180deg, rgba(30, 64, 175, 0.03) 0%, #ffffff 100%);
+    border-color: rgba(30, 64, 175, 0.25);
+    border-top: 4px solid var(--accent-blue);
     box-shadow: var(--shadow-md);
 }
 
-.premise-icon {
-    font-size: 2.2rem;
-    margin-bottom: 15px;
+.contrast-card-badge {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-.premise-text {
-    font-size: 1.2rem;
-    font-weight: 600;
-    line-height: 1.5;
+.contrast-badge-legacy {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.contrast-badge-modern {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.contrast-card h3 {
+    font-size: 1.35rem;
+    margin-bottom: 2px;
     color: var(--text-primary);
 }
 
-/* Features Section (Detailed list layout) */
+.contrast-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.contrast-list li {
+    position: relative;
+    padding-left: 26px;
+    font-size: 0.94rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+
+.contrast-list li strong {
+    color: var(--text-primary);
+}
+
+.contrast-list-legacy li::before {
+    content: "✕";
+    position: absolute;
+    left: 0;
+    top: 1px;
+    color: #dc2626;
+    font-weight: 800;
+    font-size: 0.95rem;
+}
+
+.contrast-list-modern li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent-blue);
+    font-weight: 800;
+    font-size: 1rem;
+}
+
+/* Features Section (2x2 scannable grid) */
 .features-section {
     background-color: var(--bg-secondary);
-    padding: 100px 0;
+    padding: 95px 0;
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
 }
 
 .features-detailed-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
 }
 
 .detailed-card {
@@ -515,17 +577,27 @@ p {
     border: 1px solid var(--border-color);
     border-left: 5px solid var(--accent-red);
     border-radius: 10px;
-    padding: 40px;
+    padding: 32px 28px;
     box-shadow: var(--shadow-sm);
     position: relative;
     overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.detailed-card:nth-child(even) {
+    border-left-color: var(--accent-blue);
+}
+
+.detailed-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
 }
 
 .card-num {
     position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 3.5rem;
+    top: 16px;
+    right: 24px;
+    font-size: 3rem;
     font-weight: 800;
     color: #f1f5f9;
     line-height: 1;
@@ -536,16 +608,44 @@ p {
 .detailed-card h3 {
     position: relative;
     z-index: 2;
-    margin-bottom: 25px;
-    font-size: 1.5rem;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
 }
 
 .card-text {
-    font-size: 1.05rem;
+    font-size: 0.98rem;
     color: var(--text-secondary);
-    line-height: 1.65;
+    line-height: 1.6;
     position: relative;
     z-index: 2;
+}
+
+.features-proof-bar {
+    margin-top: 28px;
+    padding: 16px 24px;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow-sm);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.features-proof-link {
+    color: var(--accent-blue);
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.features-proof-link:hover {
+    text-decoration: underline;
 }
 
 /* How It Works Section */
@@ -1196,7 +1296,11 @@ p {
         text-align: center;
     }
     
-    .premises-grid {
+    .contrast-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .features-detailed-grid {
         grid-template-columns: 1fr;
     }
 

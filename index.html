@@ -30,7 +30,7 @@
     <meta name="twitter:image" content="https://foresightstudio.io/assets/fss_screen_shots.png">
 
     <link rel="icon" type="image/png" href="assets/FSFavicon.png">
-    <link rel="stylesheet" href="style.css?v=10">
+    <link rel="stylesheet" href="style.css?v=11">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -273,40 +273,45 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="premises-section">
+    <!-- Problem -> Proof Contrast Section (Why Not Excel) -->
+    <section id="about" class="contrast-section">
         <div class="container">
-            <div class="section-header">
-                <h2>About Foresight Studio</h2>
-                <p>Foresight Studio is built around some simple, but fundamental premises</p>
+            <div class="section-header" style="max-width: 820px;">
+                <h2>Why Life Sciences Teams Move Beyond Spreadsheets</h2>
+                <p>High-stakes commercial, clinical, and BD&amp;L decisions shouldn't hinge on buried cell references and single-point averages.</p>
             </div>
-            <div class="premises-grid">
-                <div class="premise-card">
-                    <div class="premise-icon">🧩</div>
-                    <p class="premise-text">Complex dynamics can (and should) be represented simply.</p>
+            <div class="contrast-grid">
+                <!-- Left Column: The Legacy Spreadsheet Trap -->
+                <div class="contrast-card contrast-card-legacy">
+                    <div class="contrast-card-badge contrast-badge-legacy">⚠️ The Legacy Spreadsheet Trap</div>
+                    <h3>Opaque, Fragile &amp; Blind to Risk</h3>
+                    <ul class="contrast-list contrast-list-legacy">
+                        <li><strong>Buried Multi-Tab Logic:</strong> Patient flows, adoption curves, and gross-to-net assumptions hide across dozens of linked tabs that break under pressure.</li>
+                        <li><strong>Single-Point Illusion:</strong> Deterministic cell averages mask binary clinical trial risk, regulatory delays, and P10 / P90 commercial downside.</li>
+                        <li><strong>Version-Control Chaos:</strong> Duplicating workbooks to compare base, upside, or deal scenarios creates slow, error-prone board and IC reviews.</li>
+                    </ul>
                 </div>
-                <div class="premise-card">
-                    <div class="premise-icon">🖼️</div>
-                    <p class="premise-text">A picture is worth a thousand words (or rows in a spreadsheet).</p>
-                </div>
-                <div class="premise-card">
-                    <div class="premise-icon">🔍</div>
-                    <p class="premise-text">Transparency is an imperative.</p>
-                </div>
-                <div class="premise-card">
-                    <div class="premise-icon">🎲</div>
-                    <p class="premise-text">Uncertainty is everywhere; ignore it at your own peril!</p>
+
+                <!-- Right Column: The Foresight Studio Standard -->
+                <div class="contrast-card contrast-card-modern">
+                    <div class="contrast-card-badge contrast-badge-modern">✓ The Foresight Studio Standard</div>
+                    <h3>Auditable, Probabilistic &amp; Board-Ready</h3>
+                    <ul class="contrast-list contrast-list-modern">
+                        <li><strong>Self-Documenting Visual Driver Trees:</strong> Every epidemiology cohort, Bass diffusion curve, and P&amp;L driver is visually wired and auditable in seconds.</li>
+                        <li><strong>Built-In Monte Carlo &amp; Stage-Gated rNPV:</strong> Quantify P10 / P50 / P90 confidence bands, tornado sensitivity drivers, and Phase 1–3 / 510(k) / PMA decision trees natively.</li>
+                        <li><strong>1-Click Executive Dashboards &amp; Excel Export:</strong> War-game scenarios live in front of leadership and export clean, multi-tab <code>.xlsx</code> reports on demand.</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Key Product Features Section -->
+    <!-- Key Product Features Section (Proof) -->
     <section id="features" class="features-section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" style="max-width: 780px;">
                 <h2>Foresight Studio in Practice</h2>
-                <p>A local-first, visual modeling platform for opportunity analysis in life sciences.</p>
+                <p>A local-first visual modeling engine engineered for life sciences opportunity analysis.</p>
             </div>
             
             <div class="features-detailed-grid">
@@ -314,39 +319,44 @@
                 <div class="detailed-card">
                     <span class="card-num">01</span>
                     <h3>Visual Node Graphs</h3>
-                    <p class="card-text">Build models as a visual node graph (inputs, CAGR, diffusion curves, logic switches, P&L) instead of brittle, buried spreadsheet formulas.</p>
+                    <p class="card-text">Model inputs, global demographic populations, CAGR, Bass diffusion uptake, market share, and P&amp;L / DCF as a clear visual workflow instead of nested cell formulas.</p>
                 </div>
 
                 <!-- Feature 2 -->
                 <div class="detailed-card">
                     <span class="card-num">02</span>
-                    <h3>Monte Carlo & Sensitivity Analysis</h3>
-                    <p class="card-text">Run Monte Carlo simulations and real-time sensitivity analysis, presenting a defensible range and the variables that move it—rather than a single point estimate.</p>
+                    <h3>Monte Carlo &amp; Tornado Sensitivity</h3>
+                    <p class="card-text">Replace fragile point estimates with PERT, Beta, Normal, and LogNormal distributions—generating instant P10/P50/P90 ranges and tornado charts that rank your top value drivers.</p>
                 </div>
 
                 <!-- Feature 3 -->
                 <div class="detailed-card">
                     <span class="card-num">03</span>
-                    <h3>Side-by-Side Sandbox Scenarios</h3>
-                    <p class="card-text">Test scenarios side by side, non-destructively, and watch every chart recalculate the moment you change an assumption.</p>
+                    <h3>Side-by-Side Scenario Sandboxing</h3>
+                    <p class="card-text">Stress-test base, upside, downside, and competitive-entry scenarios non-destructively, with every KPI and valuation chart updating in real time.</p>
                 </div>
 
                 <!-- Feature 4 -->
                 <div class="detailed-card">
                     <span class="card-num">04</span>
-                    <h3>Local-First IP Control</h3>
-                    <p class="card-text">Keep everything local-first. Your models and sensitive clinical or opportunity data never leave your local machine.</p>
+                    <h3>100% Local-First IP Control</h3>
+                    <p class="card-text">Run entirely on your macOS or Windows machine. Proprietary clinical trial assumptions, net pricing, and M&amp;A target models never touch an external cloud.</p>
                 </div>
+            </div>
+
+            <div class="features-proof-bar">
+                <span>Want to inspect a live biopharma market model and DCF dashboard right in your browser?</span>
+                <a href="/preview.html" class="features-proof-link" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'features_proof_bar', cta: 'open_live_preview' })">Explore Interactive Live Model &amp; Dashboard &rarr;</a>
             </div>
         </div>
     </section>
 
-    <!-- Life Sciences Vertical Solutions & Strategic Analysis Section -->
+    <!-- Life Sciences Vertical Solutions & Strategic Analysis Section (Fit) -->
     <section id="solutions" class="solutions-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Purpose-Built for Life Sciences Forecasting &amp; Strategic Analysis</h2>
-                <p>From early-stage clinical assets to commercial launch and M&amp;A due diligence, Foresight Studio adapts to the exact commercial mechanics of your vertical.</p>
+            <div class="section-header" style="max-width: 820px;">
+                <h2>Purpose-Built for Every Life Sciences Vertical</h2>
+                <p>From early-stage clinical assets to commercial launch and M&amp;A due diligence, Foresight Studio adapts to the exact mechanics of your market.</p>
             </div>
 
             <div class="solutions-grid">
@@ -359,11 +369,11 @@
                             <h3>Pharmaceutical &amp; BioPharma Forecasting</h3>
                         </div>
                     </div>
-                    <p class="solution-desc">Model patient-based epidemiology and commercial drug launches from global demographic cohorts through clinical stage gates and loss of exclusivity.</p>
+                    <p class="solution-desc">Model patient-based epidemiology and commercial launches from demographic cohorts through clinical stage gates and loss of exclusivity.</p>
                     <ul class="solution-bullets">
-                        <li><strong>Epidemiology &amp; Patient Flows:</strong> Built-in US &amp; global population databases (by age, sex, and year), prevalence/incidence, diagnosis, and line-of-therapy progression.</li>
-                        <li><strong>Launch Uptake &amp; Share:</strong> Native Bass Diffusion adoption curves, dynamic competitive market share, compliance/persistence, and gross-to-net pricing.</li>
-                        <li><strong>Pipeline rNPV / eNPV:</strong> Time-aware Phase 1, Phase 2, Phase 3, and FDA/EMA approval decision trees with continuous WACC discounting.</li>
+                        <li><strong>Patient Epidemiology:</strong> Built-in US &amp; global age/sex population data, incidence/prevalence, and line-of-therapy flows.</li>
+                        <li><strong>Launch &amp; Gross-to-Net:</strong> Native Bass diffusion curves, dynamic market share, compliance, and net pricing.</li>
+                        <li><strong>Stage-Gated rNPV / eNPV:</strong> Time-aware Phase 1–3 and FDA/EMA approval decision trees with continuous WACC discounting.</li>
                     </ul>
                 </article>
 
@@ -376,11 +386,11 @@
                             <h3>Medical Device Forecasting</h3>
                         </div>
                     </div>
-                    <p class="solution-desc">Connect surgical procedure epidemiology with hospital capital equipment placement and recurring disposable pull-through economics.</p>
+                    <p class="solution-desc">Connect surgical procedure epidemiology with hospital capital placement and recurring disposable pull-through economics.</p>
                     <ul class="solution-bullets">
-                        <li><strong>Procedure-Volume Forecasting:</strong> Map demographic aging and disease prevalence directly to inpatient, outpatient, and ASC procedure volumes.</li>
-                        <li><strong>Capital + Consumable Razor/Razorblade:</strong> Model hospital capital installed-base expansion alongside single-use disposable utilization per procedure.</li>
-                        <li><strong>MedTech Regulatory &amp; Commercialization:</strong> Evaluate 510(k), De Novo, and PMA development timelines, VAC committee adoption lags, and ASP/tender erosion.</li>
+                        <li><strong>Procedure Epidemiology:</strong> Map demographic aging and disease prevalence to inpatient, outpatient, and ASC volumes.</li>
+                        <li><strong>Razor / Razorblade Economics:</strong> Link capital equipment installed-base growth to per-procedure consumable utilization.</li>
+                        <li><strong>510(k), De Novo &amp; PMA Pathways:</strong> Model regulatory timelines, hospital VAC adoption lags, and ASP/tender erosion.</li>
                     </ul>
                 </article>
 
@@ -393,11 +403,11 @@
                             <h3>Diagnostics Forecasting</h3>
                         </div>
                     </div>
-                    <p class="solution-desc">Forecast clinical laboratory, point-of-care (POC), and molecular diagnostic test volumes across screening, diagnosis, and therapy monitoring.</p>
+                    <p class="solution-desc">Forecast clinical lab, point-of-care (POC), and molecular assay volumes across screening, diagnosis, and monitoring.</p>
                     <ul class="solution-bullets">
-                        <li><strong>Screening &amp; Assay Utilization:</strong> Model guideline-eligible screening populations, symptomatic testing rates, repeat monitoring frequency, and reflex testing cascades.</li>
-                        <li><strong>Instrument Placement &amp; Reagent Rental:</strong> Link analyzer installed-base growth to assay menu expansion and per-instrument test throughput.</li>
-                        <li><strong>Companion Diagnostics (CDx):</strong> Synchronize biomarker testing adoption directly with targeted BioPharma therapy launch curves and payer coverage milestones.</li>
+                        <li><strong>Screening &amp; Reflex Cascades:</strong> Model eligible populations, symptomatic testing rates, and repeat monitoring frequency.</li>
+                        <li><strong>Analyzer &amp; Reagent Rental:</strong> Connect instrument placements directly to assay menu expansion and throughput.</li>
+                        <li><strong>Companion Diagnostics (CDx):</strong> Synchronize biomarker testing attach rates with targeted therapy launches and payer coverage.</li>
                     </ul>
                 </article>
 
@@ -410,11 +420,11 @@
                             <h3>Strategic Analysis &amp; Portfolio Valuation</h3>
                         </div>
                     </div>
-                    <p class="solution-desc">Equip executive leadership, boards, and BD&amp;L deal teams with transparent, risk-adjusted strategic analysis instead of fragile single-point estimates.</p>
+                    <p class="solution-desc">Equip leadership, boards, and deal teams with transparent, risk-adjusted valuations instead of single-point estimates.</p>
                     <ul class="solution-bullets">
-                        <li><strong>Probabilistic Monte Carlo Risk:</strong> Quantify P10 / P50 / P90 valuation confidence bands using PERT, Normal, Beta, Triangular, Weibull, and LogNormal distributions.</li>
-                        <li><strong>Tornado Sensitivity Rankings:</strong> Instantly isolate which clinical, regulatory, or commercial assumptions drive NPV, IRR, and peak sales.</li>
-                        <li><strong>Deal &amp; Scenario War-Gaming:</strong> Compare base, upside, downside, and competitive-disruption scenarios side by side with instant Executive Dashboard and Excel (<code>.xlsx</code>) export.</li>
+                        <li><strong>Monte Carlo Confidence Bands:</strong> Quantify P10 / P50 / P90 outcomes across PERT, Beta, Normal, and LogNormal inputs.</li>
+                        <li><strong>Tornado Sensitivity Rankings:</strong> Isolate which clinical, regulatory, or commercial variables swing NPV and IRR most.</li>
+                        <li><strong>Deal &amp; Scenario War-Gaming:</strong> Compare base, upside, and downside cases live with 1-click dashboard and <code>.xlsx</code> export.</li>
                     </ul>
                 </article>
             </div>

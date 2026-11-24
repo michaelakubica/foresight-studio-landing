@@ -898,6 +898,11 @@
                         email: session.user.email
                     });
                 }
+                if (session.user && session.user.email) {
+                    window._hsq = window._hsq || [];
+                    window._hsq.push(['identify', { email: session.user.email }]);
+                    window._hsq.push(['trackPageView']);
+                }
                 const storedRef = getStoredReferrer();
                 const existingMetaRef = session.user && session.user.user_metadata && session.user.user_metadata.referrer_code;
                 if (storedRef && !existingMetaRef) {
@@ -1997,5 +2002,8 @@
             }
         }
     </script>
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/247755112.js"></script>
+    <!-- End of HubSpot Embed Code -->
 </body>
 </html>

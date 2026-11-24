@@ -885,11 +885,31 @@ p {
     font-size: 0.8rem;
     font-weight: 600;
     color: var(--text-secondary);
-    margin-bottom: 14px;
-    min-height: 36px;
+    margin-bottom: 10px;
+    min-height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.pricing-best-for {
+    font-size: 0.76rem;
+    line-height: 1.4;
+    color: #334155;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin-bottom: 14px;
+    min-height: 54px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pricing-best-for strong {
+    color: var(--text-primary);
+    font-weight: 700;
 }
 
 .pricing-price-block {
@@ -1049,10 +1069,23 @@ p {
 }
 
 .pricing-trial-banner-text {
-    font-size: 1rem;
+    font-size: 0.96rem;
     color: var(--text-primary);
     flex: 1;
     min-width: 280px;
+}
+
+.pricing-banner-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.pricing-banner-sub {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
 }
 
 /* FAQ Section */

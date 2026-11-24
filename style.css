@@ -254,7 +254,7 @@ p {
 
 /* Hero Section */
 .hero-section {
-    padding-top: 170px;
+    padding-top: 135px;
     padding-bottom: 90px;
     position: relative;
     background: radial-gradient(circle at 80% 20%, rgba(30, 64, 175, 0.05) 0%, transparent 50%),
@@ -297,36 +297,20 @@ p {
     flex-wrap: wrap;
 }
 
-/* Hero Notice Card */
-.hero-notice-card {
-    margin-top: 26px;
-    padding: 14px 18px;
-    background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(211, 47, 47, 0.04) 100%);
-    border: 1px solid rgba(30, 64, 175, 0.18);
+/* Hero Pedigree & Trust Bar */
+.hero-pedigree-bar {
+    margin-top: 24px;
+    padding: 13px 16px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
     border-left: 3px solid var(--accent-blue);
     border-radius: 10px;
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
-    max-width: 540px;
+    max-width: 560px;
     text-align: left;
 }
 
-.hero-notice-icon {
-    font-size: 1.4rem;
-    line-height: 1;
-    flex-shrink: 0;
-    margin-top: 2px;
-}
-
-.hero-notice-body {
-    flex: 1;
-}
-
-.hero-notice-tag {
-    display: inline-block;
-    font-size: 0.72rem;
+.hero-pedigree-title {
+    font-size: 0.74rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -334,16 +318,15 @@ p {
     margin-bottom: 4px;
 }
 
-.hero-notice-text {
-    font-size: 0.93rem;
-    color: var(--text-primary);
-    line-height: 1.45;
+.hero-pedigree-text {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.48;
     margin-bottom: 0;
 }
 
-.hero-notice-text .offer-value {
-    color: #b45309;
-    font-weight: 700;
+.hero-pedigree-text strong {
+    color: var(--text-primary);
 }
 
 /* Visual Mockup Container */
@@ -1196,7 +1179,7 @@ p {
         gap: 10px;
     }
 
-    .hero-notice-card {
+    .hero-pedigree-bar {
         margin: 22px auto 0 auto;
         text-align: left;
     }

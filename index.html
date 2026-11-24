@@ -30,7 +30,7 @@
     <meta name="twitter:image" content="https://foresightstudio.io/assets/fss_screen_shots.png">
 
     <link rel="icon" type="image/png" href="assets/FSFavicon.png">
-    <link rel="stylesheet" href="style.css?v=9">
+    <link rel="stylesheet" href="style.css?v=10">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -209,13 +209,6 @@
 
     <!-- Header Navigation -->
     <header class="navbar">
-        <div class="top-notice-bar">
-            <div class="top-notice-container">
-                <span class="notice-badge">Special Offer</span>
-                <span class="notice-text">For a limited time, your subscription includes a personalized concierge onboarding <span class="notice-highlight">(a $500 value)</span></span>
-                <a href="#pricing" class="notice-link" data-attr="cta-top-notice" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'top_notice', cta: 'claim_offer' })">View Plans &rarr;</a>
-            </div>
-        </div>
         <div class="nav-container">
             <a href="#" class="logo-link">
                 <img src="assets/FSLogo.png" alt="Foresight Studio Logo" class="nav-logo" width="1982" height="296">
@@ -243,19 +236,16 @@
                 <p class="hero-lead">Whether evaluating an acquisition, prioritizing a pipeline asset, or building a multi-year commercial plan across <strong>BioPharma</strong>, <strong>Pharmaceuticals</strong>, <strong>Medical Devices</strong>, or <strong>Diagnostics</strong>, your decisions are only as sound as the models behind them. Foresight Studio replaces opaque spreadsheets with transparent, probabilistic visual workflows—giving you the rigor and clarity for high-confidence <strong>strategic analysis</strong> and <strong>forecasting</strong>.</p>
                 <div class="hero-ctas">
                     <a href="/dashboard?mode=signup" class="btn btn-hero-primary" data-attr="cta-hero-trial" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'hero', cta: 'start_free_trial' })">Start 7-Day Free Trial</a>
-                    <a href="https://calendly.com/michaelkubica/foresight-studio-live-demo?back=1&amp;month=2026-11" target="_blank" rel="noopener noreferrer" class="btn btn-hero-secondary" data-attr="cta-hero-live-demo" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'hero', cta: 'request_live_demo' })">Request a Live Demo</a>
+                    <a href="https://calendly.com/michaelkubica/foresight-studio-live-demo" target="_blank" rel="noopener noreferrer" class="btn btn-hero-secondary" data-attr="cta-hero-live-demo" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'hero', cta: 'book_model_walkthrough' })">Book a 20-Min Model Walk-Through</a>
                 </div>
                 <div class="hero-trial-subtext">
-                    ✨ Full 7-day access to <strong>Strategic Analysis Lab</strong> &middot; No credit card required
+                    ✨ Full 7-day access to <strong>Strategic Analysis Lab</strong> (no credit card) &middot; Or bring one forecast challenge to map live
                 </div>
 
-                <!-- Concierge Onboarding Notice -->
-                <div class="hero-notice-card">
-                    <div class="hero-notice-icon">🎁</div>
-                    <div class="hero-notice-body">
-                        <div class="hero-notice-tag">Limited Time Bonus</div>
-                        <p class="hero-notice-text">For a limited time, your subscription includes a personalized concierge onboarding <span class="offer-value">(a $500 value)</span>.</p>
-                    </div>
+                <!-- Pedigree & Trust Callout -->
+                <div class="hero-pedigree-bar">
+                    <div class="hero-pedigree-title">🏛️ Decision-Science &amp; Life Sciences Pedigree</div>
+                    <p class="hero-pedigree-text">Engineered by <strong>Applied Data Sciences, Inc.</strong> &amp; <strong>StratDynamics</strong> — built on decades of biopharma, MedTech, and diagnostics commercial forecasting and BD&amp;L valuation expertise &middot; <strong>100% Local-First</strong> on macOS &amp; Windows.</p>
                 </div>
             </div>
             
@@ -651,17 +641,14 @@
         <div class="container footer-container">
             <div class="footer-cta">
                 <h2>Build Better Forecasts Today</h2>
-                <p>Start your 7-day free trial with full Strategic Analysis Lab capabilities, or choose the subscription plan built for your team.</p>
-                <div class="footer-notice-pill">
-                    <span class="footer-notice-icon">🎁</span>
-                    <span>For a limited time, your subscription includes a personalized concierge onboarding <strong>(a $500 value)</strong>.</span>
-                </div>
-                <div>
+                <p>Start your 7-day free trial with full Strategic Analysis Lab capabilities, or book a 20-minute model walk-through with our team.</p>
+                <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
                     <a href="/dashboard?mode=signup" class="btn btn-hero-primary" data-attr="cta-footer-trial" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'footer', cta: 'start_free_trial' })">Start 7-Day Free Trial</a>
+                    <a href="https://calendly.com/michaelkubica/foresight-studio-live-demo" target="_blank" rel="noopener noreferrer" class="btn btn-hero-secondary" data-attr="cta-footer-walkthrough" onclick="if(window.posthog)posthog.capture('clicked_cta', { location: 'footer', cta: 'book_model_walkthrough' })">Book a 20-Min Model Walk-Through</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Applied Data Sciences, Inc. All rights reserved.</p>
+                <p>&copy; 2026 Applied Data Sciences, Inc. &middot; StratDynamics Ecosystem. All rights reserved.</p>
             </div>
         </div>
     </footer>

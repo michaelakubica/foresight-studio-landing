@@ -1,8 +1,8 @@
-version: 1.3.57
+version: 1.3.58
 files:
-  - url: Foresight Studio-1.3.57-arm64.dmg
-    sha512: VexmHKwcpRqYCF9PN6uTDwGucMjhERJoA8uEVkMZfBObLBcgKL/GYkm+DGOk0nrAw2izOxtKAxwlVZB+0HR1zA==
-    size: 103977871
-path: Foresight Studio-1.3.57-arm64.dmg
-sha512: VexmHKwcpRqYCF9PN6uTDwGucMjhERJoA8uEVkMZfBObLBcgKL/GYkm+DGOk0nrAw2izOxtKAxwlVZB+0HR1zA==
-releaseDate: '2026-11-25T18:32:10.657Z'
+  - url: Foresight Studio-1.3.58-arm64.dmg
+    sha512: shVQ3yZn2SU6XxhA/ACFTGCLigYwNBHMqX7Qg0AroOHqIUru3oYWn1A6YXzEIC/ud0PWREu8N+caFNYxnppEKg==
+    size: 103974921
+path: Foresight Studio-1.3.58-arm64.dmg
+sha512: shVQ3yZn2SU6XxhA/ACFTGCLigYwNBHMqX7Qg0AroOHqIUru3oYWn1A6YXzEIC/ud0PWREu8N+caFNYxnppEKg==
+releaseDate: '2026-11-25T18:46:23.639Z'

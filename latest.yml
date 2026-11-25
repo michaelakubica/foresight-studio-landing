@@ -1,8 +1,8 @@
-version: 1.3.59
+version: 1.3.60
 files:
-  - url: Foresight Studio Setup 1.3.59.exe
-    sha512: 89e+POACDprh8S5cTdOfHrG07317CQqti3UvwfAhknaGj6heXlk60xWcC4PABzRAghQQNcY2aEODrF2tiKSDlA==
-    size: 87363621
-path: Foresight Studio Setup 1.3.59.exe
-sha512: 89e+POACDprh8S5cTdOfHrG07317CQqti3UvwfAhknaGj6heXlk60xWcC4PABzRAghQQNcY2aEODrF2tiKSDlA==
-releaseDate: '2026-11-25T19:00:57.899Z'
+  - url: Foresight Studio Setup 1.3.60.exe
+    sha512: m7SqsYSl4+zQokLOeeYfJr7Kqi9SiyR5tu6nPdYzhC+0UcLVZYRtZIw1jk3cbPVsRNdB+fZYdxyiC7n6wfSOfw==
+    size: 87363350
+path: Foresight Studio Setup 1.3.60.exe
+sha512: m7SqsYSl4+zQokLOeeYfJr7Kqi9SiyR5tu6nPdYzhC+0UcLVZYRtZIw1jk3cbPVsRNdB+fZYdxyiC7n6wfSOfw==
+releaseDate: '2026-11-25T19:21:41.647Z'
